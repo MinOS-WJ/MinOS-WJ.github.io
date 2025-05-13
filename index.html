@@ -1,316 +1,751 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人网站</title>
+    <title>个人常用网站主页</title>
     <style>
-        /* 基本样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-        }
-        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            color: #fff;
-            background-color: #000;
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
         }
-        
-        /* 背景图片设置 */
-        .bg-image {
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 修改页眉样式 */
+        header {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background-image: url('https://files.codelife.cc/wallhaven/full/m9/wallhaven-m9yky1.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-            filter: brightness(0.8);
-        }
-        
-        /* 主内容区域 */
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        
-        /* 导航栏样式 */
-        .navbar {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-        
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-        
-        .navbar a:hover {
-            color: #ccc;
-        }
-        
-        .logo img {
-            height: 40px;
-        }
-        
-        /* 主要内容区 */
-        .main-content {
-            flex: 1;
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* 头像区域 */
-        .profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
             text-align: center;
-            margin-top: 20px;
+            z-index: 1000;
         }
-        
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.2);
+
+        /* 为内容添加上边距，避免被固定页眉遮挡 */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            /* 添加上边距，与页眉高度一致 */
         }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
+
+        .website-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            list-style: none;
+            padding: 0;
             margin-bottom: 30px;
         }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+
+        .website-item {
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
         }
-        
-        .skill {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 8px 15px;
-            border-radius: 20px;
+
+        .website-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .website-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px;
+            background-color: #f8f8f8;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .website-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .website-name {
             font-size: 14px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        
-        /* 社交链接部分 */
-        .social-links {
-            display: flex;
-            gap: 15px;
+
+        .website-url {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 新增的RSS新闻样式 */
+        .rss-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-top: 30px;
         }
-        
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
+
+        .rss-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .rss-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rss-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .rss-item:last-child {
+            border-bottom: none;
+        }
+
+        .rss-item-title {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .rss-item-title a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .rss-item-title a:hover {
+            color: #0066cc;
+        }
+
+        .rss-item-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* 新增的标签样式 */
+        .tab-container {
+            margin-bottom: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tab-button {
+            padding: 8px 15px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .tab-button.active {
+            background-color: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 新增的页脚样式 */
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .rss-sources {
+            margin-bottom: 20px;
+        }
+
+        .rss-sources h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .rss-sources ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .rss-sources li {
             display: flex;
             align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s;
         }
-        
-        .social-icon:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+
+        .rss-sources a {
+            color: #ccc;
+            text-decoration: none;
         }
-        
-        /* 响应式调整 */
-        @media (max-width: 768px) {
-            .profile-img {
-                width: 120px;
-                height: 120px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
-            
-            .skills {
-                gap: 10px;
-            }
-            
-            .skill {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
+
+        .rss-sources a:hover {
+            color: white;
         }
-        
-        /* 设置滚动条样式 */
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        /* 添加一些简单的动画效果 */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-out;
+
+        .copyright {
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
         }
     </style>
 </head>
+
 <body>
-    <!-- 背景图片 -->
-    <div class="bg-image"></div>
-    
-    <!-- 主容器 -->
+    <header style="background-color: #333; color: white; padding: 10px 0; text-align: center;">
+        <div id="clock" style="font-size: 18px; font-weight: bold;">正在加载时间...</div>
+    </header>
     <div class="container">
-        <!-- 导航栏 -->
-        <nav class="navbar">
-            <div class="logo">
-                <a href="https://zyyo.net/">
-                    <img src="https://zyyo.net/usr/themes/Zyang/static/img/logo.jpg" alt="Logo">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="#">首页</a>
-                <a href="#">关于</a>
-                <a href="#">项目</a>
-                <a href="#">联系</a>
-            </div>
-        </nav>
-        
-        <!-- 主要内容区 -->
-        <div class="main-content">
-            <div class="profile">
-                <img src="https://zyyo.net/usr/themes/Zyang/static/img/default.webp" alt="个人头像" class="profile-img">
-                <h1>程序员</h1>
-                <p class="subtitle">专注于现代Web开发技术</p>
-                <div class="skills">
-                    <span class="skill">Vue.js</span>
-                    <span class="skill">Node.js</span>
-                    <span class="skill">React</span>
-                    <span class="skill">JavaScript</span>
-                    <span class="skill">TypeScript</span>
-                    <span class="skill">Python</span>
+        <h1 style="text-align: center; color: #333;">常用网站</h1>
+        <ul class="website-list">
+            <!-- 现有网站列表 -->
+            <!-- 超星学习通 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADAklEQVQ4jW2TT2jcdRDF38z3z2a3aaNCvaibBq0giNWoJ4NuvFTqwUoIhDRZN02blCp4F5Ug6sWThwpNDAmmSYRCIkpRPK16Eg0temkRrZJoUbfUZJtkf39mxoMWY3VOj+G9wwzvQ/hnGIACwGBtfH/w3GNqnYAa2H0v21l9fv7dtZu9tHPRPzxcbi/umTC1Z5npFiKGmYKdg+R5YqDJ9cbG68vLc7/9nTW6IYZGxroLhcISEXWmSQIzSwEgxBhV8m+J3C+FtsLBLE1/2ErSpxdnJy8CIAZgR44cuzOE8KGKdqZJkgDQGGKMhbaoqueSzfUnZ6ZOPdVcbx4i5o5SjB/194/eBsAYAHwxvOHY3ZHnWQogMDuI6GlTO/jr2uW+xcXFBgA3/97Ux5vXrx/2Md5T6oivAABVq8fv5ei/VrNdBDMzMECtvJXdt7Aw/dOOJ6NSqfh6vZ5XR8fnmF3feqO5zyO4XmbeLVkmIIIBQrBCKIbPR46fPG/Ap07p3PT0qdVms0kAoLl+UGwvDXV0SI9XkS44b0SkzrnAzBBRizGUmbhcKBaf2djYeBzAwMrKitbGnz+kIifV1ISt7IlYDQYiYgO+UZG3zPjKdqu1zznXI6bQLD9/dPyFR0TkRU88lEMheW4EYg+iyzADM5tl2bGZ2amvdpw9DQDDo2P9HvQFAW1pmqqZCUCeyVbd/QcebjJRjYgKRry/u/vR8OCB7q0LF1auVioVX6vVcPXa1m5mnAAMBohjdgY0mom9xAuzp78jpiXnPAPW62OY4hg/GRw82lXfu9cmJiYsODxBjJ+J6EszQ4iRyXBm6czkFQYATfRlFVljZrRarS1RKXPRP4CzZwWAueAH0zR7rZWmb+8qtfssyy5qtvnmDRYIgFWrJx4KbX6ZmDuzLAUzN3LVXmfWQ869I6K/xxhvN7NLYsnh2cm/qvwvmAYGRu4q7im9aqp9zvlbVQXeB4jkULU/mGju2v/A9B+cnxsbu9upfyzXvMuMxDv+cVtan70/M7N6s/dPhX6Gq7/lOzwAAAAASUVORK5CYII="
+                        alt="超星学习通">
                 </div>
-            </div>
-            
-            <!-- 社交链接 -->
-            <div class="social-links">
-                <a href="#" class="social-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8.049c0-4.446-3.564-8.05-8-8.05C3.564 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V3.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                    </svg>
-                </a>
+                <div class="website-name">超星学习通</div>
+                <div class="website-url">https://i.chaoxing.com/base?vflag=true&fid=1734&backUrl=http://v2.chaoxing.com
+                </div>
+                <a href="https://i.chaoxing.com/base?vflag=true&fid=1734&backUrl=http://v2.chaoxing.com" target="_blank"
+                    style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- U学院 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="https://www.ulearning.cn/portal/favicon.ico" alt="U学院">
+                </div>
+                <div class="website-name">U学院</div>
+                <div class="website-url">https://courseweb.ulearning.cn/ulearning/index.html#/index/courseList</div>
+                <a href="https://courseweb.ulearning.cn/ulearning/index.html#/index/courseList" target="_blank"
+                    style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 头歌 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADDklEQVQ4jYWTTWhUVxzFz//e92Ze38zEODMWO5VMlNm0iJsQAnVj6MKQkEBSkULWLS4UQcSFKzdupAv3pW6sbgpiBBfFLgraogkicVECipkYMh8t85U3mczMu/eeLuyHO8/6fGzOTwAIAL7N5wvpdPo7C6QPlcsL+LAEAAUAqocPj6tk8mFa688b1v7qnHsoIqGIOOfcO7tS0GR0QGRtZGvr9/9aCOhKsfhzyve/bFo7CMhkWik48p8JgYgAJAhgSJIi95uJxDefbWw0ZGdsbF5Zu9JttawOAi1hSBpjJAgEzoHGACJgHENEQEA+Jr12HN//odX6St7m83dTpdLXennZ7j95ol0UIZyZQev6dagwxOiVK6KzWepsFqZahet0OFhft96bN35cry944vtTg+EQqURCJY8f5/D1a0mcOCGwljQGrtkkfF9ULkd4HoKTJxFMTUkyDFlZWlr2jLUFNToKSaXE1OsQreHabdJaoTEIpqfBbpdub0/8Uom9lRXsP3+ucufOwdZqUwpaJ8z2NvtPn4L9PnWxKLbdFhfHAID+6irs7q6I53H39m3pPX4sXqEgjZs3YcPwU6nMzg4OXLrks9eD7XSQmptDXC6LqVYxfPEC8Dz4x45BHTyIwfo6vEzGuTiWxvnz9EslKimXd6IbN9C4epUqlUL86hWiW7fYu3eP0Z07gDFwnQ7E8ygipLWSOXsWyclJYRQNlY2iNT57hvTiogsmJlA7cwYIAhm5cEHM1hbD06fpF4ukiKhUCt7Roxi8fMncxYvQu7s7ylYqP4bz8xKcOsX68jJdt4v9Bw9oNjeZnJiQ3qNH4tptsNUiSAzW1tC4fNn5zkEdObIq1wD17fj4T5lud+lPzzMqDIk4htvbg2QyYL//7onGEFp7Agg9z35kjLbJ5IIAwPbISDaRz38v5KJPihIBtAathSgFkBAR7DmHfXKQUyrZJX/5bXNzRt7Hq1EsftEjJ61IBv9DJEKKJXtaqdlDWk9H1v7hBoO5T2q18vtoflB/jY2tNMfH727k84V/c38DU82UnPMwV1UAAAAASUVORK5CYII="
+                        alt="头歌">
+                </div>
+                <div class="website-name">头歌</div>
+                <div class="website-url">https://www.educoder.net/</div>
+                <a href="https://www.educoder.net/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- WeLearn -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="https://ts4.tc.mm.bing.net/th/id/ODLS.20457950-4733-48e2-89ef-8ca84e76aeef?w=32&h=32&r=0&o=6&pid=1.2"
+                        alt="WeLearn">
+                </div>
+                <div class="website-name">WeLearn</div>
+                <div class="website-url">https://welearn.sflep.com/</div>
+                <a href="https://welearn.sflep.com/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 网上共青团·智慧团建 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="https://zhtj.youth.cn/zhtj/static/img/web_logo.png" alt="网上共青团·智慧团建">
+                </div>
+                <div class="website-name">网上共青团·智慧团建</div>
+                <div class="website-url">https://zhtj.youth.cn/zhtj/</div>
+                <a href="https://zhtj.youth.cn/zhtj/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 武汉工程大学综合教务管理系统 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAvtJREFUOI09kstv1GUUQM+93/ebmQ4tUChYobICqqRIfdTEaGJEYmwwGrbGDYm6MCnGjSYujI+FutW4U+PCjcYQjIkYF7IwkUc0XbRG0fpoEdBCB6bT6czv8d3rAvX8BScnRwBGnnzp5vrYgaek3txunlxxgqjEoACYGaWZG4JKkKK3frWz8OP7veOv/Ck7Z94eK8PgSZrDE7XBIWKtATj9yukVJW5GvZYxkAWCCmWeU6y1Sd32+aq1Nh0LaTzLwMYJ617P+/3VkA0N0ysq9g9n3L9vhIEsMHfpOt9c6JATiP1VLFVJm5vGs6o4FlNejEqjMgS1KsX+tRV/7fAkM4cmBI38x7mFS/78J6eZb+dSr2VYKixU+U1RSYa5CC6dfu5vPn6nzDw8yamf/+bDs7+y1q84OD7KM/ftlsmxLXy/dNUbUUXMBdyimRNJ0q2cu3Ztleemp/j0uwWOfnQaCxkCfDm/yAenZllc6bChnknS4FgSw1DMBb8R7MjUOMmcl4+fwfIum2vCUAZNcs5fbuFmaK0OLuJueHKJQsItURPnttFNLPzV4uK1VRqq5N0OAJ4qGlEgZogobjmiCu5ENzA33B0HRAVEwQ2ryhsF3dEsQ0LEU8LMAFASCoYCeVkxf7HFntFhdm0ZYr10MhWCQAhKp4SirMATuAOOmaG4uVmiEZUTs7/hLrxxZIqIsdzu0lrr0VovmN67jbHBSF5UCOaYoe4e6gcOPuZZ846aui+11qUeVI4+sJ9Dt+4gemLP9o0ce+h23nriQRpB+Gz2D68FMEQo1ucioI65mflAFuT1z895mRIvHL5b7tl7y/8jfTW/5O98/QP1iJhVToiOo9FFlgVRT6kUkSqK8+qJb/n4zE/cu3sHzXrG3IUrnP39MlUyBmoZlixJ0Oiqy9J49MVd2cjWk2HD5n0OKKAq9MpEv6wwh3pUmvUIDv6vkXXbvxTt7iMCMDA9M5aN7nwaYxueHCBIEFUQVdyMMiXHgBAEdKW4svhe/4t3F/8BcNaTIo3K7pgAAAAASUVORK5CYII="
+                        alt="武汉工程大学综合教务管理系统">
+                </div>
+                <div class="website-name">武汉工程大学综合教务管理系统</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="武汉工程大学综合教务管理系统" wc="144">
+                        http://jwxt.wit.edu.cn/jsxsd/xk/</url>
+                </div>
+                <a href="http://jwxt.wit.edu.cn/jsxsd/xk/" target="_blank"
+                    style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 武汉工程大学 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADoUlEQVQ4jV2TS0xcdRxGv9+9d96v2xnedMrYEajWxgC6APsgrUVjogsNrSZNF01Mm7jxFZtYq3SBiZFqtDEkLGqgGwmk2qZaqY92BKpCKMJ0IBQYGJwZKG9mYO77/t1Y03jWX76zOoR/YYwREbHmsdniAw77UWh4ttDvLuQFAyvryv2cqv/UPhTvuvja3vSDLf7P5b/SpwamVxKrus6u9txlyzmZRe/Ns7av+9jfGYktqPrcj9GZUw+EAMA1NTEOABKy+nmRILRe7xzYsbme0awum3FreMHsH18yvUVew06q1tM9FNzuDbRObuUuEBFramIcAUBnZPyd+urKls3shjowOMu3R9Lcz0kJugrwhSL8og0NIQdef1o0QzsDpn+baJlKLL5bHSo8z4/IcqWwrlxq+ypi8fod3Nutw9xQYhNlIT/efKWcfksrtGm3I5pSMbXOqMbH8E3HbaaoqP2w88urgrwsnazYVezbf3BFP9s6wCdWJNjzPGh59VHquScxQ2WwFttIc1pY39gaWvQt7qMXnjDyQiW++YXsCc5t4+qdLgsTPD4anliB4LHCwjFKZxRWG3bRnhIrqXMZ5sjkaN9jLtxNb0HI83AeBzEHxz3PGaYZtoNR750kcQTosgoto7LY+CpdjcxhLbWO9/b56fYb5azUaSAxm8Ho5CrxHODghSBnaiYfn1xkqq6TKenYLhCunNtPopWwq9SDsc8O4pMjlfj1ziK+H1yEqasAY8hlc1AkhQRF1mZv9ow9Hi7xsnCBm3raXkY4FEBD3SOQZRUXusfwxQ/TSC3lCB4rEzQV1eV+dqV7lOC2pYS8Es+t/KLAbt5B+pnTe4VAwMlu9E7R5UicXe9Pwi3aUSw6UFEkom8wjcM1xRDtnCkbvFBRkR+hCaY+OfdH4veJaNpaXReml05+S8tLEuCykNNrx+GaAqg6IGdVtrYo4btLjezGtVHmL/Aqe57bWU8AMJHdao71Jt+XshnVX+oXWi4OUW9sAaqkA5IO2AW8+EwQn549xIb/jGua7rDVNuz4uFz0nCHGGEdHzglz7ac7Rvrnj05PJthTVUFjQzK42bUtWG0WhPOcsAu8EYslBc7ipqpDwa5jkV+OxRobdXqoJX5GUj6YiabfGhlK+awWDn7RgtKgiHg8g/wiEZqpZarqys6XHT/ejK4uAwD+O2AAEcAGlOxun8KfuJ/aOJDblEsFAeTyuJPbCiw3V22OjjqbLfpwwf8AVgO9SX92FiAAAAAASUVORK5CYII="
+                        alt="武汉工程大学">
+                </div>
+                <div class="website-name">武汉工程大学</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="武汉工程大学" wc="144">
+                        http://www.wit.edu.cn/</url>
+                </div>
+                <a href="http://www.wit.edu.cn/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 智慧学工平台 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAC1klEQVQ4jT3STWsTQRgA4HlnZz+SzSZp0jS1oYmNrVR70KoFC4KKetNbT3rXkyA9+Q8UPXlRELGIXgoqnrQiFlFQFK2UJq3fbWyTNIlJNtnZzX7OeBB8fsMDjDHOOcYYMVZqWqWO27B8SRYlkRi0pxGe71PG0hrCmDEGAJhzjgEMy1n81ny9SaPpRMt1onE5kZCXNiosHK4h5eW3Px1qY4w55wQBmLZXbHol01/ZqKTj6trH2vvFqslQX79CEF77XTFsLojSJOfRiAI8CBaKNUrk3A51/mHx0d3ljTJFIRVlEoKmDqbDM8eTZ0/u7PkYU2N6Z5xUdLvhwdO3yzkpfuvqW8v2DhzOnT6959rzGuuPlQO4/aK7I9l0vJbt8GxMxr/azq5s8vDu7NzNjwFj4ahy5dLUZtu1HRC0sNiv9TC5Pv8rm0ocO5hfbzvYCFBME52GX69SUSHJmKyb3qGx2N6xSK9s+J3eREb2DKfZ5MPpSNdHGGGBI766VscAQcBq27RQqC8tVcvfG+cORRbOD08mgZb11S8NhjgQASPEZREkQhh1UjHlydyZSo3a1Fm5fezBxfFmtfPqTYkZFHu+RAAQIgJCXzf1ZDo0ko09n58ZG4mfPJIVifD42Y+Ze4UPhVYoJCCDjua09arhuR68W9dXGgZyUR7DienM9432wmJpbr5Y2aZYJmGVbG0ZQ4PajTtnfmzr+wajJKOSbTtUN8yeFN5/6v7PUocabnJAPTqd6Xbdbteucj57+cgfy8qlYvm4BK7rfa6Yqy1LFmG9oM/dfL/5W3d8htwACTC+O3VhdrovFyKCNKKSqeEoMM6o6Xyq2jqHbs+UuPB1uVHZ6iKAoWFtdKJfVLDvw4CMp4bUaESGIAgwhg51ivVe3eWG7RIJS6KQjIZbhqUQ0bX9lAgTA6G4JjPG4X/vwA9KTatq+m2H+RxhjDEPIgJkNJJPqQIh/3r/BVqwhwYf21FtAAAAAElFTkSuQmCC"
+                        alt="智慧学工平台">
+                </div>
+                <div class="website-name">智慧学工平台</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="智慧学工平台" wc="144">
+                        https://xs.wit.edu.cn/</url>
+                </div>
+                <a href="https://xs.wit.edu.cn/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 武汉工程大学图书馆 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAvtJREFUOI09kstv1GUUQM+93/ebmQ4tUChYobICqqRIfdTEaGJEYmwwGrbGDYm6MCnGjSYujI+FutW4U+PCjcYQjIkYF7IwkUc0XbRG0fpoEdBCB6bT6czv8d3rAvX8BScnRwBGnnzp5vrYgaek3txunlxxgqjEoACYGaWZG4JKkKK3frWz8OP7veOv/Ck7Z94eK8PgSZrDE7XBIWKtATj9yukVJW5GvZYxkAWCCmWeU6y1Sd32+aq1Nh0LaTzLwMYJ617P+/3VkA0N0ysq9g9n3L9vhIEsMHfpOt9c6JATiP1VLFVJm5vGs6o4FlNejEqjMgS1KsX+tRV/7fAkM4cmBI38x7mFS/78J6eZb+dSr2VYKixU+U1RSYa5CC6dfu5vPn6nzDw8yamf/+bDs7+y1q84OD7KM/ftlsmxLXy/dNUbUUXMBdyimRNJ0q2cu3Ztleemp/j0uwWOfnQaCxkCfDm/yAenZllc6bChnknS4FgSw1DMBb8R7MjUOMmcl4+fwfIum2vCUAZNcs5fbuFmaK0OLuJueHKJQsItURPnttFNLPzV4uK1VRqq5N0OAJ4qGlEgZogobjmiCu5ENzA33B0HRAVEwQ2ryhsF3dEsQ0LEU8LMAFASCoYCeVkxf7HFntFhdm0ZYr10MhWCQAhKp4SirMATuAOOmaG4uVmiEZUTs7/hLrxxZIqIsdzu0lrr0VovmN67jbHBSF5UCOaYoe4e6gcOPuZZ846aui+11qUeVI4+sJ9Dt+4gemLP9o0ce+h23nriQRpB+Gz2D68FMEQo1ucioI65mflAFuT1z895mRIvHL5b7tl7y/8jfTW/5O98/QP1iJhVToiOo9FFlgVRT6kUkSqK8+qJb/n4zE/cu3sHzXrG3IUrnP39MlUyBmoZlixJ0Oiqy9J49MVd2cjWk2HD5n0OKKAq9MpEv6wwh3pUmvUIDv6vkXXbvxTt7iMCMDA9M5aN7nwaYxueHCBIEFUQVdyMMiXHgBAEdKW4svhe/4t3F/8BcNaTIo3K7pgAAAAASUVORK5CYII="
+                        alt="武汉工程大学图书馆">
+                </div>
+                <div class="website-name">武汉工程大学图书馆</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="武汉工程大学图书馆" wc="144">
+                        http://library.wit.edu.cn/
+                    </url>
+                </div>
+                <a href="http://library.wit.edu.cn/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- Google -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACIklEQVQ4jYWSS0iUURTHf/fe8RvHooE2VlT2FNqUGWmNEYUR9lhEEVJhUIsoXOQuap1Rq6KHNQt3LaPAIOxhlNTChUwLMU3NR1CklUzg6xvPd1ro2KhTHjjcA/e8/uf/hzmmqsUiEheRLhHxp/2TiDxQ1aK5+ZmFeSJSrwuYiMRVNZKuMxnFz51zu9T3GX/6iPGmRqS/F5WAUMEawuUVRI5UYjwPEWl2zlUYY8YMgIjUW2vPBkPfSV6uYbKvJ+uW3rZSojfuABAEQdw5d96oajHQqr7P8IUqpL8X43lEjp3EK4mBtfgt75l4+4po7U3cytWZPbcyjUlTidv642ipDu7foX7bh2zgs92jDhHpUlWdbNmuEw15OvqweqE7ZjboCAEFADrSjs1LkRM7NAt3+bWRebfYudFx9XguwFqbwePs9z/mT/6NLdAHMBpex28W0/C1Y1Zy05VFM75nUwiAZVGT/v5sgdcA3UurOPUrxvXOFhJD7fOmdn4LeNc5NbpkfWimv5mWZ8KXFKdfXqInOYBnc6gsPEjZ8mKssbQOtvEkMczYl0oK8z3un4lgppbYkhZS3Fp7bnD0Jxeba+lODmTFviFcxq29NeRHDUEQ1DnnqtNSjohIo3Nutx+keNz9gmf9zfQkB0ChYMkK9q2KcaLwMJFQGFV9Y4w5YIwZzyBBI2lRLcD9PVXN/SdFqlokInUi0iEiE9P+UUTuqurmufl/AKTzsFGmvUNUAAAAAElFTkSuQmCC"
+                        alt="Google">
+                </div>
+                <div class="website-name">Google</div>
+                <div class="website-url">https://www.google.com.hk/index.html</div>
+                <a href="https://www.google.com.hk/index.html" target="_blank"
+                    style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACaElEQVQ4jY2SP2gUQRSHvzcze5c977jDiBhQTGEngqIBAyIkRYKNIJggYiOCImprJXiWNnYiEaJoIXIKgiBIIImFqGCMQv7YiWIjGjS62c1lb2fGYs0ZG8kPBh7vzbz38XsDqxqZCrg7f47R6V4Ahhq6XVuNR6d7uTt/jpGpYLUk1L2CK7Dt6C4qlXe00gWa8RFO7X7OWo2+O0DHhkcEhU1E0W4+P5yBy0j7wu23NaR4g7B8jJXkO5kdwuvX+Rjbg9EPKJY2srx0H79ylpN7FnOCay9CNtXqoI7jfQWhig7AWbBZAoA2JZQG2wLPT0QicPdYWKwbOqtXqXReIPoB3iV4iXCpQxDAAODsL6z1gEIwIFupdF7ESyjcmY/RgaLVOoxTrwBoWk+HFirWAxBpaecAlNtPEDzGtaxB6RKt9CfdXyfp68tYjyYnJ/m4eQVjqgbwKBE+dIU0GgnLu8bw3rOSHOL03rzhzTeGQvgUpSCcGeBDV4hxAniD9wIIsU5RPQGFrB/vwTY7crOAxlyRNOhHBOKegDhLqToBUH+gPLXE8Kk7JUsnyLJxPreW28jzX5tk2ThZOsGn7pRakpPnrkpulCpp6uII5wZ4MjtIvS8Dcrp6X0ZpdpBwboC6OFSp/UsNIDjvCXfEAAwP2zV2+Xa0Nl94G5Ps9IAYnE0ICkXi9/005l7ypaDYYH17hauKtBBrYUvqiKWXICjisiWD97coV88T/RgjyRKqrXzXy/LPe4yDqoMEj9ElylVYXLiuOXjiGcpqUNuBAHD/PaIsyDeayQ2+L176O2ZkqoQpa9ajbMlyZl8C8BsqkQfT9fYhAwAAAABJRU5ErkJggg=="
+                        alt="哔哩哔哩 (゜-゜)つロ 干杯~-bilibili">
+                </div>
+                <div class="website-name">哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="哔哩哔哩 (゜-゜)つロ 干杯~-bilibili"
+                        wc="144">
+                        https://www.bilibili.com/</url>
+                </div>
+                <a href="https://www.bilibili.com/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+            <!-- Kimi.ai - 会推理解析，能深度思考的AI助手 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACCElEQVQ4jYWTMU8bQRCFv9lbG2NkkFzEEpIjpUv4J5ShoKCAdGkoIgHyj0AKRRo6SiLxAyJRpqV2ESIr4uKYAjchyDmdvPtS3B1cSJS8Zme1b2dm3+yDAtvAEPgJBCACKtd6HLBkBjYEdsq77NRI4S+XHsf1/TbAZ0Bmlrdareicq5MEqLW4qNZCM9JoR15sRDpP8+LMLnHOzYC4vr4e0zSNg8EgAvLeC4h7e3tx/G2iN69fiWcb0b2TePm+LOJmzswWAFZWVuj3+7a6umpmphgj3W7XDg4OrNd7wofzc5F/N32diPRj+XoteEkGEEJAkrIsQ5JJYnNzk16vx9HREZ++TMySqfT2Ocx/VAnMm5kBmBlmRrfbpd/v02632d3dJU1TTk9PC3rIDXLASnmAJEkiELe2tqIkhRBUx3w+1+3trQ4PDwtRzerTiL6aZYwRgKurK0ajEUmS4Jzj4uKCtbU19vf3OT4+ZjQaYWZIRQe+7IcQAgBnZ2cMBgOcc/eJT05OiDGyvLxMxa/gVaUCJOG9LyUpqjjnaDabVTJVvArOzFRqgZlZkiQ1hYoOvPc453DO3Qte1XSScoC7uztubm40nU4FmCTK7nR9fc14PCbLsofSBTKAS0BJkuSdTid67//4yo1GQ0tLS9EeJlB+ZS4rJ/7LMI/jUNv/5sghMPuvnQvLDysn/gK2LDHPFYe+SAAAAABJRU5ErkJggg=="
+                        alt="Kimi.ai - 会推理解析，能深度思考的AI助手">
+                </div>
+                <div class="website-name">Kimi.ai - 会推理解析，能深度思考的AI助手</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="Kimi.ai - 会推理解析，能深度思考的AI助手"
+                        wc="144">
+                        https://kimi.moonshot.cn/?utm_campaign=TR_yhG8XNaa&utm_content=&utm_medium=CPA&utm_source=CH_aCcFssVP&utm_term=
+                    </url>
+                </div>
+                <a href="https://kimi.moonshot.cn/?utm_campaign=TR_yhG8XNaa&utm_content=&utm_medium=CPA&utm_source=CH_aCcFssVP&utm_term="
+                    target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- MinOS-WJ -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACpklEQVQ4jW2SQWucVRSGn3Pu/WYmTUnJJDVSsKnxa5O0FMFNK9SFexHElQu7EN0oCt0ILQquxIUi2Fqx+gcERXFbUaqrCorFWDuJTDKWNEQbO5bWJN/ce46LTOgQ+q7OhXPPy/ucI2xJAAeYLGceD6F4UeFJhwfBRZAVQ741S58sLVy9zIBkoC6mZo6+I/CyqDZwx90dQEQEEdx83d3Ptlu/ngZse4BCWUzNND6PsXjKzGDr38D8e28NSkq9L9rX5p4DcgB8anrfe7Va7WRK6Zvs+Q1BxlVkr7mtOHRFpHD8ck75NO67arX60yOj4/Vba39dlAPl7PEQ46UQi5B61cft1twrQDx06NGJqvp3DSDX683rrdZNoJqaPvp+LIpXc+5tpl4+ETWEl0S15pYRSEAA8vz8leUBPjf6eYLgycyCiO5StRdUhCdwdzNf3+ilD4Hcbx4EvF3nRO88lu/g7iJyQh3ZJ4iA/73cvrbYb7QBctsUHaDTav3pcEMEBHlYAfEt7MPNZjm0w3mnZGJiouEw4i6CEFSEDu6IyNjuseJY3yneJ0IEvL5n7LiKPNC/kY6S7QdUAblbxPjp5MGDs2zB3Bkh7S8PHylCOAsgKuLu38tkOftYjPEnc/9ARR7SEJ4xy19ZtrcW53+7ArC/PHykKOLr7v6sigwDyd0t53xMO3/8/rO7fRRDeK2qqrctp3dxdv+3mW7fs682BE6qyLA76xpCdOzc0sLVXxTQdt485WaX6o36Z+b2o5udWe20tjfC9ZSWzX0VIIQwlFP6up02zwA6AOpA45HpkQsa9XnLxtrG7dHu0lIXoFmWI6NxqCui2SxfaLfmTgEV/avrU+6mW2urX+4Z3/uduN9cydVFut0EsP5Pk9Gxop6Tv7m4MHd+4Nj4HxrWR3D6SUWaAAAAAElFTkSuQmCC"
+                        alt="MinOS-WJ">
+                </div>
+                <div class="website-name">MinOS-WJ</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="MinOS-WJ" wc="144">
+                        https://github.com/MinOS-WJ</url>
+                </div>
+                <a href="https://github.com/MinOS-WJ" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+            <!-- 免费Fluent UI System Icons站长图标下载 - 站长素材 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAi0lEQVQ4jZXS0Q0CIQwG4La4kMkZF3AinOPWcAncABpHcQGRe4Bw2ANT/jfg+9M0AY11MBVjXWoSQogeo0dxn2Oso7bMzOd0qcfT/XkcQCM9Ck3pUtDrUhD6hf7omDmvROKBlm9XXx/vnx2UuhSy0+h9QlcDgNCdHf7ks94mCllrC1WrCq0GAJz93htemlx/Nw7NbAAAAABJRU5ErkJggg=="
+                        alt="免费Fluent UI System Icons站长图标下载 - 站长素材">
+                </div>
+                <div class="website-name">免费Fluent UI System Icons站长图标下载 - 站长素材</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed"
+                        title="免费Fluent UI System Icons站长图标下载 - 站长素材" wc="144">https://sc.chinaz.com/tubiao/fluent</url>
+                </div>
+                <a href="https://sc.chinaz.com/tubiao/fluent" target="_blank"
+                    style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 菜鸟教程 - 学的不仅是技术，更是梦想！ -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC9klEQVQ4jV2TX2jWZRTHP9/n+b3/9qbbnGukc206nWOEUGhjhDcuw4tmF9WFUUh30U0bFlaXUYvChIgugigqCjLCJUWmFv2hZEJdFjbXHG/mRUhue/f++f2e53SxzaRzdTh8z+Gcw+cr1sIQwl767kBnqVh4UFGjKPYLgnAzkXguhvqJiZHT19a0AFptF2DHvh97PFf0z8hpQBIxGAicExYNM37LGuGFiXumPlwborXktR/vn2ztKBwNIZI1YpDAJAHIzMwgV3DeENWF8Nz48MlJjBXB69MPHM4Vc+9ULpLVqkgOJ4HdtCJAjIRSGW3eZr7RyA6N333yI714dqxrfbubrl733e++gtWX5Z03LMqcTPVM7Ohs2Pq+Ns1fbmWo+Wc2dNT7dYXs0mIt3ZO0lP0jzltPKSmHI4cPOEiAaCunCcmRKJPPe0vTRAlL/m++MFzW35LLPZQ4x30xRmtd18LB/XvxylsucTIgyzJqjSblUgsSCiHaclhk6o8zlrmaSRpNgG6LEBR1fXFJ5eIt/PzrHAvVZXb2buHc+V/o6minq6Odgd4eVevLZhgxGIbrdxgyDAPKLSU+++Yn3ps6w2BvD7OVq9y6oZ3BbT289cnnfPnDBcqlIma29lfvcKo4L2RYmgXbfceA7RrYysX5Cr9frjC4tYeZ+SvcNbSdOwe3WzNNAeG8MLOZxKK+NnSvECEENnVu0KNjozZbuarF6jLtbWV2+E0M79ppDq+FxjWTpBhMzvmzzmEfpPVwRYUo73wMmafZMPXdttn27dmNJ8/Gto0WUilkDq9cTAqONA2zTdc8IYDj02NPlMulN1tDX5pQckZwIEmyVZ9gREQSU1viHzfna9XaY+PDp96/gfLx8wdfzZftSKOeElILErCKMqsoJ3nnc/mE5pK9PDFy6tkbKK/FGxcefhIXn3Zet2NGjCt15wQYMepS1giTT418+vZ/ZvqfnY99u39Lrlg+FM32Ad0Iw5iT46uleu3j5/ee/utmO/8LnwFof3hW+HsAAAAASUVORK5CYII="
+                        alt="菜鸟教程 - 学的不仅是技术，更是梦想！">
+                </div>
+                <div class="website-name">菜鸟教程 - 学的不仅是技术，更是梦想！</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="菜鸟教程 - 学的不仅是技术，更是梦想！" wc="144">
+                        https://www.runoob.com/</url>
+                </div>
+                <a href="https://www.runoob.com/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- Shodan Search Engine -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC3klEQVQ4jX2Sy08TYRTFz/d9M51OS8tAtSJUgURtfaDGqGgKCilqhSgGHxu3Ji50pRvdGP8Fd25cGDRGMQjqwrcRMERFE0QJaBQE+oDy6ItpZ6Yz40aRhuDZ3Xtufjf35BIso46a+mrJIly0S9K2nKokknPJB6NZ27WzHx/Ji+e4xcVVgF4FjE5/4EBlZXnH6kCdjS8pgZ5MIt3fv8vS27f7JHCiDdDzADf8fsfaHH/OtkJqDAIiz2hpaeNBm6PGD4vHAyOTAXU44JmNHzudO3iirevZ3QXArerDzgo7fVxet6/W7tsAMAYlEgHndsPi8QAAqCjCVrUZfHcPnAwBAP8ALkG/XNkQqJUOBGD1eUEFKzLD35D58TMvE13OQEskQHSiL+7TFUWFTaLXC6vPB2oVAUIg+rygooj4q9cws1mooTBi99shR6JIUnTmhchbeRc4BioIeRtZgR3Rm62YffoCSjQKbSqGuXhiIG0RfuQB5ET6uzL6q1SbnARfUrJgpPs/IxuOQp3+AvtGHxw7d8ABsmVlKPzlGQveiWfNC6d6n86y46s8mk1VWvTZOZg5DdrMDKY7OhF/0w1lagquhnqsbAxC2lcDx/atxFZWypwc266FJrZurNr0kN0eHxlothfmjFisNts/wBJdPUgNDhnJSDhaVLWlwN18hBTsqQbvdoMrLoZQXgFTUUBnptdzY5MxBgCtYyPdTcXu9lRaHk7KSl98Xr6iUS65xl+93+n3gysuWjiNUAoiCJCHh2COjaYWPvHo29dfAXz9Wz9paGohhAAcW/LmVLDAVDVQEwJd4v5RTlUGsuEI1LHxJd784BCUcAQZk0wsxf9RsGxdyC7Pn+INXSKUgne5YOo6Uu/eI3avDenxiVTEwCWyHAAA2usOBSuc9jtOT5nEJAmGokINhZCZi6sjBjlz/Pmj1v8CAKDTH/QWMP28KPB7TcNkGcP4pBm564ffvPwAAL8B5I8meGZQoX0AAAAASUVORK5CYII="
+                        alt="Shodan Search Engine">
+                </div>
+                <div class="website-name">Shodan Search Engine</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="Shodan Search Engine" wc="144">
+                        https://www.shodan.io/</url>
+                </div>
+                <a href="https://www.shodan.io/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- Z-library 项目 - 官方 Z-lib. 免费下载电子书 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB+klEQVQ4jW2TwU8TURDGf7OvwaQEaEJiehBPrUE5cUCoKAb/A/8x+R8MR0iMJJJ4UC8I5SCNIiIXEkHgQENiE1vY7nweurvZGiaZvPdm9vvme7NvkLQuyVPPzb1wHMpIkpJ0XaPwsZ+cnGjz3aaurq7k7kqSZMh3tnd0cHAgSZ4kA44IUOo2MT6h1derbLzdAKDb7dLpdDAzmjtNVl6tUAolAcbAFKUbc3eNjY/Z8otldpu7dDodQingiZMkCVtbW9TrdeoP6gbIbMARZWySTBILjQUuLy85+nlECIFQClycX7D/bZ/Fp4tIot/v55gIwMzIGKcfTlOtVmk2m8Q3MSEKtFotJDH3eA4zI4qiHBOlTJgZ7k4IgcaTBntf9mi328RxzPbnbWZmZpicnMTdMTMk5VfI2bJEo9Gg1+tx+OOQs99nHB8fs/hsID8DZopLZO1MVQBM3Z+iVqvx8cMnKpUKlUqF2dnZIfmZZX8hD7o7klh6vsTZ6S++f20xvzBPuVzG3fNiOU7FU0pgZsQ3MYen51z3+zy6V6VcLucqb1Uw1EyJkTsjvP9TYq0dGB0dvRWcEWQKlDUxW7u9a/72ekOxVHCOKRJYts+VAM5wRTMbesqlwjU0yBsGuMTL2l1idxIXIcrlZ4UMiJD0pjC0no1xcZz/ixVHf/0f3/CdFnoGVAUAAAAASUVORK5CYII="
+                        alt="Z-library 项目 - 官方 Z-lib. 免费下载电子书">
+                </div>
+                <div class="website-name">Z-library 项目 - 官方 Z-lib. 免费下载电子书</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="Z-library 项目 - 官方 Z-lib. 免费下载电子书"
+                        wc="144">
+                        https://zh.z-lib.gs/</url>
+                </div>
+                <a href="https://zh.z-lib.gs/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 天工AI - 聊天写作对话的全能AI助手，搜索更深度，阅读更多彩 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACBUlEQVQ4jW2Ty2pUQRCGv6rTc+aCkRCjEox4IwQlImgEFwrizrU7cS+6ETc+hW/gwrcIuMtaFNSFGIKCySJEZUwgl8lMnyoXdU5GNA0N1V3V1f//V5Vcf+yPtMVLd07igCMiCEcsdxzBERBh00a8kBtP/KcWTJthCoIgOPyXorlz3MBFUTL9JMq0Vbg7OrRxqDtkizeFgsjYVyiC46JMJRwfZWRuFr97DXJGRMAMvm3AqIL5s4cJJBX48idYXUfKFp4kuNFtw6lJJFdx3j+AxXm4egHer0KvHUlSgXRauHmg04ZtIUi3hE4J3TKw7g7gw1c4cyJo9NrhK8Yiiyw+dTcLBJPHoLIIun8TiiLsXgdeLQUtVdjaCYSqkNzD2D+AnX1Qge09uDQDty6DKCx/hC9rcLwH5oFGNajqUfUWqSsgEZQ0KDVl+HulRvGGgjucdri9EPe/d2BuFhbOQ64C4dYu7A1qCgKMcqj94E4EjSqY6MJGP3wi8PBe6FMmWHoL71ZCcI3mhWz4YAiDIVQVrP2AK+dgohdiNuXNFQxGY0apscxgey+aSoBhhtdvoN2CizPx2B1aCa8afYAESDvhK+vI5++1ThKtXNW/plR3otetXEQiQJIbfUlMiWGlIodjJEDrn2Gqx8nAVVGr+KXZeQZsIGDg5rgzhny4AasnkYC/mY3nfwAI2fTB5CdaVwAAAABJRU5ErkJggg=="
+                        alt="天工AI - 聊天写作对话的全能AI助手，搜索更深度，阅读更多彩">
+                </div>
+                <div class="website-name">天工AI - 聊天写作对话的全能AI助手，搜索更深度，阅读更多彩</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="天工AI - 聊天写作对话的全能AI助手，搜索更深度，阅读更多彩"
+                        wc="144">
+                        https://www.tiangong.cn/</url>
+                </div>
+                <a href="https://www.tiangong.cn/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 中国大学MOOC_优质在线课程学习平台 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACV0lEQVQ4jY1TO2tUYRScOd+9G+Mag4sECRZioURRi4SgVhZWStJtb5FKLfwJ19JCO1/5CStG0MJYKRKIWyT4ICgaRAOap0Yim2Tvd79vLDaIjxWc8pwzMHPOHKANqjU4ZLB2vT/BkXsDl+j4OVIf1hY3Zu+MzHz9dSATLCPirxxkGTFziKhWwQuPTihGIOQhKmDFOvg8+PDUTA9Hh6emWxwR2WWHLCv+VnB3MAdggswc6VKDOaLYDJ6JPQF1/dbZ+n0CAoC92XilUtlxAMZ98r6XI2ODkSQUJRKQECUIRLK9HBiR4tPSngdvF84/K5W7TsUiP2q03UxLjnRICFKSJBgNkujMBUDA+7l9xceF/WwUu4a6etIhMgGRI4ZCFnyIYEwEaWs1UgTJgKbfphfvBrm02uOMAc58iBuNaKmZFAiQMGeQLGFLLgQRdHLm2VjfyaXVHnSkmwBIiQbSQAMVKQmSRICJ6zCLQWABQCogyAiXuEjACFBA3LIpCBDJ1m0AmaLqCnHeHH3S6ZJS2aVMaQIksGUPJggkQJLYKgqC7PZw/cS35S99PhTH/WZxrsjzm1HJGwJUyBVjACiRCAI8YmwtwZxZqWRsF89j18YHgzCRry+aby6HkK+l3XtOMi33QLGAfO4VwwqTdC75GU8B/aP9ydD8VKip06fOqVypOLrDrrn2qQCT10VzYwIq6nB8tY7G7OzFM99/VyARpPquPj5e6ihNSnEaEWNJ2j0+/Tx/idEB/z8PhoNXJnqP3Jg8DVTdb41qzaFWc5DaWm+PWs0hy/752j8AwwA8sYMuKMgAAAAASUVORK5CYII="
+                        alt="中国大学MOOC_优质在线课程学习平台">
+                </div>
+                <div class="website-name">中国大学MOOC_优质在线课程学习平台</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="中国大学MOOC_优质在线课程学习平台" wc="144">
+                        https://www.icourse163.org/</url>
+                </div>
+                <a href="https://www.icourse163.org/" target="_blank" style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 查看个人信息_学信网 -->
+            <li class="website-item">
+                <div class="website-icon">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACGklEQVQ4jZ3RXWhSYRgH8P/x+HGcZ256bGoxFRRbpmabc4O88CYoaBEUdBHddxdE3QbdROyim6iLoMtdmOtmSBSs4cZgbRGy1SminM50bni26abH4+fpZtrXDNd79b7/531+PLwv0OEKWCyWFYc3sqYzZ2fOjt3zu1yaTnsBAJET3hcJ2iBGXL7gr7mkU8C0u+sBgPkct/hfgKRa7QEAl5J2HBq4arcPgy8xAHAqX7jscDjkhwFkd0Tlw9apyPf2ptP9HQE2rVY9NzA4qcts+psZQSkKBbN545+AA5DftTuvv1L1fTCl1i/+rBBi9IzvAa3RuJuJ9M9xHzmHbl7Y3rtNrHP6VhtJVjaOGWc+jw5OTxO4lv/2KfwXYNNq1cEj5jCTSPtrOmY1YzXNZhlNPNWj5lcZjcg1xECBL45TctlblmVXWnhzM+ceCTFKJRMZcrHv6zULL5SHS4LQt39HpGl6rZDbnoy+W7qfTCZ3fptgzGY7qTLojz4esHYLlWpgK5d3AgBFUZsEQJb5vSsTz57OHvReEgDwUKqRCVt//M3rl+e2OG5hvyZGF+adXz8uu0lScb7dT0kBYEevLwZDz29ks9mC2+tjKrU6ABAe7+g4w2i7UuvfQ+0AEgCW4rEvPM8LAGA0GpRyZdclAKiLjdMKiiLEcukJy7JcWwBAoxnEY7Flu/24QKu7rTKpNJNKxG6Fp6YWD2oGgB8WI76axWHAGQAAAABJRU5ErkJggg=="
+                        alt="查看个人信息_学信网">
+                </div>
+                <div class="website-name">查看个人信息_学信网</div>
+                <div class="website-url">
+                    <url id="cvja2oqnae73cmdcq30g" type="url" status="parsed" title="查看个人信息_学信网" wc="144">
+                        https://account.chsi.com.cn/account/account!show.action</url>
+                </div>
+                <a href="https://account.chsi.com.cn/account/account!show.action" target="_blank"
+                    style="display: block; margin-top: 10px;">访问</a>
+            </li>
+
+            <!-- 其他网站省略，完整代码见原文件 -->
+        </ul>
+
+        <!-- 新增的RSS新闻模块 -->
+        <div class="rss-container">
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="即时新闻">即时新闻</button>
+                    <button class="tab-button" data-tab="要闻导读">要闻导读</button>
+                    <button class="tab-button" data-tab="时政新闻">时政新闻</button>
+                    <button class="tab-button" data-tab="东西问">东西问</button>
+                    <button class="tab-button" data-tab="国际新闻">国际新闻</button>
+                    <button class="tab-button" data-tab="社会新闻">社会新闻</button>
+                    <button class="tab-button" data-tab="财经新闻">财经新闻</button>
+                    <button class="tab-button" data-tab="健康生活">健康·生活</button>
+                    <button class="tab-button" data-tab="大湾区">大湾区</button>
+                    <button class="tab-button" data-tab="华人">华人</button>
+                    <button class="tab-button" data-tab="文娱新闻">文娱新闻</button>
+                    <button class="tab-button" data-tab="体育新闻">体育新闻</button>
+                    <button class="tab-button" data-tab="视频">视频</button>
+                    <button class="tab-button" data-tab="图片">图片</button>
+                    <button class="tab-button" data-tab="创意">创意</button>
+                </div>
+
+                <!-- 即时新闻 -->
+                <div class="tab-content active" id="即时新闻">
+                    <ul class="rss-list" id="即时新闻-list"></ul>
+                </div>
+
+                <!-- 要闻导读 -->
+                <div class="tab-content" id="要闻导读">
+                    <ul class="rss-list" id="要闻导读-list"></ul>
+                </div>
+
+                <!-- 时政新闻 -->
+                <div class="tab-content" id="时政新闻">
+                    <ul class="rss-list" id="时政新闻-list"></ul>
+                </div>
+
+                <!-- 东西问 -->
+                <div class="tab-content" id="东西问">
+                    <ul class="rss-list" id="东西问-list"></ul>
+                </div>
+
+                <!-- 国际新闻 -->
+                <div class="tab-content" id="国际新闻">
+                    <ul class="rss-list" id="国际新闻-list"></ul>
+                </div>
+
+                <!-- 社会新闻 -->
+                <div class="tab-content" id="社会新闻">
+                    <ul class="rss-list" id="社会新闻-list"></ul>
+                </div>
+
+                <!-- 财经新闻 -->
+                <div class="tab-content" id="财经新闻">
+                    <ul class="rss-list" id="财经新闻-list"></ul>
+                </div>
+
+                <!-- 健康生活 -->
+                <div class="tab-content" id="健康生活">
+                    <ul class="rss-list" id="健康生活-list"></ul>
+                </div>
+
+                <!-- 大湾区 -->
+                <div class="tab-content" id="大湾区">
+                    <ul class="rss-list" id="大湾区-list"></ul>
+                </div>
+
+                <!-- 华人 -->
+                <div class="tab-content" id="华人">
+                    <ul class="rss-list" id="华人-list"></ul>
+                </div>
+
+                <!-- 文娱新闻 -->
+                <div class="tab-content" id="文娱新闻">
+                    <ul class="rss-list" id="文娱新闻-list"></ul>
+                </div>
+
+                <!-- 体育新闻 -->
+                <div class="tab-content" id="体育新闻">
+                    <ul class="rss-list" id="体育新闻-list"></ul>
+                </div>
+
+                <!-- 视频 -->
+                <div class="tab-content" id="视频">
+                    <ul class="rss-list" id="视频-list"></ul>
+                </div>
+
+                <!-- 图片 -->
+                <div class="tab-content" id="图片">
+                    <ul class="rss-list" id="图片-list"></ul>
+                </div>
+
+                <!-- 创意 -->
+                <div class="tab-content" id="创意">
+                    <ul class="rss-list" id="创意-list"></ul>
+                </div>
             </div>
         </div>
     </div>
 
+
+    <!-- 新增的页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="rss-sources">
+                    <h3>RSS源说明</h3>
+                    <ul>
+                        <li><a href="https://www.chinanews.com.cn/rss/scroll-news.xml" target="_blank">即时新闻</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/importnews.xml" target="_blank">要闻导读</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/china.xml" target="_blank">时政新闻</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/dxw.xml" target="_blank">东西问</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/world.xml" target="_blank">国际新闻</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/society.xml" target="_blank">社会新闻</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/finance.xml" target="_blank">财经新闻</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/life.xml" target="_blank">健康·生活</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/dwq.xml" target="_blank">大湾区</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/chinese.xml" target="_blank">华人</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/culture.xml" target="_blank">文娱新闻</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/sports.xml" target="_blank">体育新闻</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/sp.xml" target="_blank">视频</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/photo.xml" target="_blank">图片</a></li>
+                        <li><a href="https://www.chinanews.com.cn/rss/chuangyi.xml" target="_blank">创意</a></li>
+                    </ul>
+                </div>
+                <div class="copyright">
+                    <p>© 2024 个人常用网站主页. 保留所有权利.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // 简单的动画效果
-        document.addEventListener('DOMContentLoaded', function() {
-            // 为元素添加淡入效果
-            document.querySelectorAll('.profile').forEach(el => {
-                el.classList.add('fade-in');
-            });
-            
-            // 滚动时导航栏变化
-            const navbar = document.querySelector('.navbar');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-                } else {
-                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                }
-            });
-            
-            // 技能标签动画
-            const skills = document.querySelectorAll('.skill');
-            skills.forEach((skill, index) => {
-                setTimeout(() => {
-                    skill.style.transform = 'scale(1.05)';
-                    skill.style.transition = 'transform 0.3s ease';
-                    setTimeout(() => {
-                        skill.style.transform = 'scale(1)';
-                    }, 300);
-                }, index * 150);
+        // 实时时间显示
+        function updateClock() {
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+            const formattedDate = now.toLocaleDateString('zh-CN', options);
+            document.getElementById('clock').textContent = formattedDate;
+        }
+
+        // 初始化时更新一次时间
+        updateClock();
+
+        // 每秒更新一次时间
+        setInterval(updateClock, 1000);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // RSS源映射
+            const rssSources = {
+                '即时新闻': 'https://www.chinanews.com.cn/rss/scroll-news.xml',
+                '要闻导读': 'https://www.chinanews.com.cn/rss/importnews.xml',
+                '时政新闻': 'https://www.chinanews.com.cn/rss/china.xml',
+                '东西问': 'https://www.chinanews.com.cn/rss/dxw.xml',
+                '国际新闻': 'https://www.chinanews.com.cn/rss/world.xml',
+                '社会新闻': 'https://www.chinanews.com.cn/rss/society.xml',
+                '财经新闻': 'https://www.chinanews.com.cn/rss/finance.xml',
+                '健康生活': 'https://www.chinanews.com.cn/rss/life.xml',
+                '大湾区': 'https://www.chinanews.com.cn/rss/dwq.xml',
+                '华人': 'https://www.chinanews.com.cn/rss/chinese.xml',
+                '文娱新闻': 'https://www.chinanews.com.cn/rss/culture.xml',
+                '体育新闻': 'https://www.chinanews.com.cn/rss/sports.xml',
+                '视频': 'https://www.chinanews.com.cn/rss/sp.xml',
+                '图片': 'https://www.chinanews.com.cn/rss/photo.xml',
+                '创意': 'https://www.chinanews.com.cn/rss/chuangyi.xml'
+            };
+
+            // 加载RSS数据
+            function loadRSS(tabId) {
+                const rssUrl = rssSources[tabId];
+                const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl);
+                const listContainer = document.getElementById(tabId + '-list');
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'ok') {
+                            listContainer.innerHTML = '';
+                            data.items.forEach(item => {
+                                const li = document.createElement('li');
+                                li.className = 'rss-item';
+                                li.innerHTML = `
+                                    <div class="rss-item-title">
+                                        <a href="${item.link}" target="_blank">${item.title}</a>
+                                    </div>
+                                    <div class="rss-item-date">${new Date(item.pubDate).toLocaleString()}</div>
+                                `;
+                                listContainer.appendChild(li);
+                            });
+                        } else {
+                            listContainer.innerHTML = '<li class="rss-item">无法加载新闻，请检查RSS源是否可用。</li>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('加载RSS失败:', error);
+                        listContainer.innerHTML = '<li class="rss-item">加载新闻失败，请检查网络连接或RSS源是否可用。</li>';
+                    });
+            }
+
+            // 初始化所有标签
+            for (const tabId in rssSources) {
+                loadRSS(tabId);
+            }
+
+            // 标签切换功能
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const tabId = this.getAttribute('data-tab');
+
+                    // 更新按钮状态
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // 更新内容显示
+                    const tabContents = document.querySelectorAll('.tab-content');
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    document.getElementById(tabId).classList.add('active');
+
+                    // 加载对应标签的RSS数据
+                    loadRSS(tabId);
+                });
             });
         });
     </script>
 </body>
+
 </html>
