@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>舒尔特方格游戏</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .container {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 100%;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      .introduction {
+        background-color: #f8f9fa;
+        padding: 0.8rem;
+        border-radius: 8px;
+        margin-bottom: 0.8rem;
+        text-align: left;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+      }
+
+      .introduction p {
+        color: #666;
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+      }
+
+      .introduction ul {
+        list-style-position: inside;
+        color: #666;
+        margin-left: 0.5rem;
+      }
+
+      .introduction li {
+        margin-bottom: 0.2rem;
+        line-height: 1.3;
+      }
+
+      .game-info {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        color: #666;
+      }
+
+      .size-selector {
+        margin-bottom: 0.8rem;
+      }
+
+      .size-selector .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 0.3rem;
+        margin-top: 0.3rem;
+      }
+
+      .size-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.9rem;
+        border: 2px solid #2196f3;
+        border-radius: 5px;
+        background-color: white;
+        color: #2196f3;
+        cursor: pointer;
+      }
+
+      .size-btn:hover {
+        background-color: #e3f2fd;
+      }
+
+      .size-btn.active {
+        background-color: #2196f3;
+        color: white;
+      }
+
+      .size-btn:disabled {
+        border-color: #cccccc;
+        color: #cccccc;
+        cursor: not-allowed;
+      }
+
+      .grid {
+        display: grid;
+        gap: 5px;
+        margin-bottom: 0.8rem;
+        justify-content: center;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cell {
+        width: 40px;
+        height: 40px;
+        background-color: #e3e3e3;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cell:hover {
+        background-color: #d0d0d0;
+      }
+
+      .cell.correct {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      .cell.wrong {
+        background-color: #f44336;
+        color: white;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #start-btn {
+        background-color: #2196f3;
+        color: white;
+      }
+
+      #reset-btn {
+        background-color: #9e9e9e;
+        color: white;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
+      button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0.8rem;
+        }
+
+        h1 {
+          font-size: 1.3rem;
+        }
+
+        .introduction {
+          padding: 0.6rem;
+          font-size: 0.8rem;
+        }
+
+        .game-info {
+          font-size: 0.9rem;
+        }
+
+        .size-btn {
+          padding: 0.2rem 0.4rem;
+          font-size: 0.8rem;
+        }
+
+        .cell {
+          width: 35px;
+          height: 35px;
+          font-size: 1rem;
+        }
+
+        .button-container {
+          gap: 0.8rem;
+        }
+
+        button {
+          padding: 0.4rem 0.8rem;
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>舒尔特方格游戏</h1>
+      <div class="introduction">
+        <p>
+          舒尔特方格是一种注意力训练游戏，由德国心理学家舒尔特发明。游戏规则简单：在方格中随机填入数字，玩家需要按顺序找出这些数字。
+        </p>
+        <p>这个游戏可以训练：</p>
+        <ul>
+          <li>注意力集中能力</li>
+          <li>视觉搜索能力</li>
+          <li>反应速度</li>
+          <li>大脑灵活性</li>
+        </ul>
+      </div>
+      <div class="size-selector">
+        <div>选择方格大小：</div>
+        <div class="button-group">
+          <button class="size-btn" data-size="3">3 x 3</button>
+          <button class="size-btn" data-size="4">4 x 4</button>
+          <button class="size-btn active" data-size="5">5 x 5</button>
+          <button class="size-btn" data-size="6">6 x 6</button>
+          <button class="size-btn" data-size="7">7 x 7</button>
+        </div>
+      </div>
+      <div class="game-info">
+        <span>当前数字: <span id="current-number">1</span></span>
+        <span>用时: <span id="timer">0</span>秒</span>
+      </div>
+      <div id="grid" class="grid"></div>
+      <div class="button-container">
+        <button id="start-btn">开始游戏</button>
+        <button id="reset-btn">重新开始</button>
+      </div>
+    </div>
+    <script>
+      class SchulteGame {
+        constructor() {
+          this.grid = document.getElementById("grid");
+          this.currentNumber = document.getElementById("current-number");
+          this.timer = document.getElementById("timer");
+          this.startBtn = document.getElementById("start-btn");
+          this.resetBtn = document.getElementById("reset-btn");
+          this.introduction = document.querySelector(".introduction");
+          this.sizeButtons = document.querySelectorAll(".size-btn");
+
+          this.numbers = [];
+          this.currentIndex = 1;
+          this.gameStarted = false;
+          this.timerInterval = null;
+          this.startTime = null;
+
+          this.initializeEventListeners();
+        }
+
+        initializeEventListeners() {
+          this.startBtn.addEventListener("click", () => this.startGame());
+          this.resetBtn.addEventListener("click", () => this.resetGame());
+          this.sizeButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+              this.setActiveSize(button);
+              if (this.gameStarted) {
+                this.startGame();
+              }
+            });
+          });
+        }
+
+        setActiveSize(activeButton) {
+          this.sizeButtons.forEach((button) => {
+            button.classList.remove("active");
+          });
+          activeButton.classList.add("active");
+        }
+
+        getGridSize() {
+          const activeButton = document.querySelector(".size-btn.active");
+          return parseInt(activeButton.dataset.size);
+        }
+
+        generateNumbers() {
+          const size = this.getGridSize();
+          const totalNumbers = size * size;
+          this.numbers = Array.from({ length: totalNumbers }, (_, i) => i + 1);
+          // Fisher-Yates shuffle
+          for (let i = this.numbers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.numbers[i], this.numbers[j]] = [
+              this.numbers[j],
+              this.numbers[i],
+            ];
+          }
+        }
+
+        createGrid() {
+          const size = this.getGridSize();
+          this.grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+          this.grid.innerHTML = "";
+          this.numbers.forEach((number) => {
+            const cell = document.createElement("button");
+            cell.className = "cell";
+            cell.textContent = number;
+            cell.dataset.number = number;
+            cell.addEventListener("click", () => this.handleCellClick(cell));
+            this.grid.appendChild(cell);
+          });
+        }
+
+        startGame() {
+          this.generateNumbers();
+          this.createGrid();
+          this.gameStarted = true;
+          this.currentIndex = 1;
+          this.startBtn.disabled = true;
+          this.resetBtn.disabled = false;
+          this.sizeButtons.forEach((button) => {
+            button.disabled = false;
+          });
+          this.startTime = Date.now();
+          this.updateTimer();
+          this.timerInterval = setInterval(() => this.updateTimer(), 1000);
+          this.introduction.style.display = "none";
+        }
+
+        resetGame() {
+          this.startGame();
+        }
+
+        updateTimer() {
+          const seconds = Math.floor((Date.now() - this.startTime) / 1000);
+          this.timer.textContent = seconds;
+        }
+
+        handleCellClick(cell) {
+          if (!this.gameStarted) return;
+
+          const number = parseInt(cell.dataset.number);
+
+          if (number === this.currentIndex) {
+            cell.classList.add("correct");
+            this.currentIndex++;
+            this.currentNumber.textContent = this.currentIndex;
+
+            if (this.currentIndex > this.numbers.length) {
+              this.gameWon();
+            }
+          } else {
+            cell.classList.add("wrong");
+            setTimeout(() => {
+              cell.classList.remove("wrong");
+            }, 500);
+          }
+        }
+
+        gameWon() {
+          clearInterval(this.timerInterval);
+          this.gameStarted = false;
+          this.startBtn.disabled = false;
+          this.resetBtn.disabled = false;
+          this.sizeButtons.forEach((button) => {
+            button.disabled = false;
+          });
+          alert(`恭喜你完成游戏！用时：${this.timer.textContent}秒`);
+        }
+      }
+
+      // 初始化游戏
+      const game = new SchulteGame();
+    </script>
+  </body>
+</html>
