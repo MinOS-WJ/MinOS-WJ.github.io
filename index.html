@@ -182,6 +182,71 @@
                          0 0 15px var(--highlight-color);
         }
         
+        /* 捐款弹窗 */
+        .donation-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--highlight-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .donation-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .donation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .donation-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        .donation-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .donation-content p {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .donation-qr img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .links-grid {
@@ -267,7 +332,8 @@
                     <h3 class="link-title">时钟</h3>
                     <a href="page/index-time.html" class="link-description">时钟</a>
                 </div>
-                
+
+
             </div>
         </div>
 
@@ -299,17 +365,26 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </div>
     
     <footer>
         <p class="footer-text">© 2025 MinOS-WJ 版权所有</p>
         <p class="footer-text">部分使用了https://www.fecoder.cn/的内容</p>
     </footer>
+
+    <div class="donation-btn" id="donationBtn">捐款</div>
+    
+    <div class="donation-modal" id="donationModal">
+        <div class="donation-content">
+            <span class="close-modal">&times;</span>
+            <h3>感谢您的支持</h3>
+            <p>扫描下方二维码进行捐款</p>
+            <div class="donation-qr">
+                <img src="donation.png" alt="捐款二维码">
+            </div>
+            <p>您的支持将帮助我们更好地运营和维护网站</p>
+        </div>
+    </div>
 
     <script>
         // 显示当前时间
@@ -345,6 +420,34 @@
         
         // 页面加载完成后获取IP
         window.addEventListener('load', getVisitorIP);
+        
+        // 显示/隐藏捐款弹窗
+        let donationQrSrc = "donation.png"; // 替换为实际的捐款二维码图片链接
+        
+        // 页面加载完成后初始化捐款弹窗
+        window.addEventListener('load', function() {
+            const donationBtn = document.getElementById('donationBtn');
+            const donationModal = document.getElementById('donationModal');
+            const closeModal = document.querySelector('.close-modal');
+            
+            if (donationBtn && donationModal && closeModal) {
+                donationBtn.addEventListener('click', function() {
+                    document.querySelector('.donation-qr img').src = donationQrSrc;
+                    donationModal.style.display = 'flex';
+                });
+                
+                closeModal.addEventListener('click', function() {
+                    donationModal.style.display = 'none';
+                });
+                
+                // 点击弹窗外部也可以关闭
+                donationModal.addEventListener('click', function(event) {
+                    if (event.target === donationModal) {
+                        donationModal.style.display = 'none';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
