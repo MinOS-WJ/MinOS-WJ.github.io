@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片与Base64互转工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #0088ff, #00ccff);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .tabs {
+            display: flex;
+            background-color: #1e1e1e;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .tab.active {
+            color: #0088ff;
+            border-bottom: 2px solid #0088ff;
+        }
+        
+        .tab-content {
+            padding: 30px;
+            min-height: 400px;
+        }
+        
+        .upload-area {
+            border: 2px dashed #0088ff;
+            border-radius: 10px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .upload-area.highlight {
+            background-color: rgba(0, 136, 255, 0.05);
+        }
+        
+        .upload-area h3 {
+            color: #0088ff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .upload-btn {
+            background-color: #0088ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 20px 0;
+        }
+        
+        .upload-btn:hover {
+            background-color: #0077ee;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 136, 255, 0.3);
+        }
+        
+        .upload-area p {
+            color: #999;
+            margin-top: 20px;
+        }
+        
+        .base64-area {
+            border: 2px dashed #0088ff;
+            border-radius: 10px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .base64-area h3 {
+            color: #0088ff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #2a2a2a;
+            border: 1px solid #333;
+            color: white;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-size: 0.9rem;
+            resize: none;
+            margin: 20px 0;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #0088ff;
+        }
+        
+        .convert-btn {
+            background-color: #0088ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .convert-btn:hover {
+            background-color: #0077ee;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 136, 255, 0.3);
+        }
+        
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .preview {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result-area {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .copy-btn, .download-btn {
+            background-color: #0088ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        
+        .copy-btn:hover, .download-btn:hover {
+            background-color: #0077ee;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 136, 255, 0.3);
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>图片与Base64互转工具</h1>
+            <p>轻松转换图片和Base64编码，适用于Web开发和其他数字需求</p>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="image-to-base64">图片转Base64</div>
+            <div class="tab" data-tab="base64-to-image">Base64转图片</div>
+        </div>
+        
+        <div id="image-to-base64" class="tab-content">
+            <div class="upload-area" id="uploadArea">
+                <h3>拖放图片到此处</h3>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <button class="upload-btn" id="uploadBtn">选择图片</button>
+                <p>支持JPG、PNG、GIF等常见图片格式</p>
+            </div>
+            
+            <div class="result-area" id="imageResultArea" style="display: none;">
+                <div class="preview-container">
+                    <img id="preview" class="preview" src="" alt="预览图片">
+                </div>
+                
+                <div>
+                    <h3>Base64编码</h3>
+                    <textarea id="base64Result" readonly></textarea>
+                    <div class="action-buttons">
+                        <button class="copy-btn" id="copyBtn">复制Base64</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="base64-to-image" class="tab-content" style="display: none;">
+            <div class="base64-area">
+                <h3>粘贴Base64编码</h3>
+                <textarea id="base64Input" placeholder="请粘贴Base64编码..."></textarea>
+                <button class="convert-btn" id="convertBtn">转换为图片</button>
+                <p>确保Base64编码以'data:image/'开头</p>
+            </div>
+            
+            <div class="result-area" id="base64ResultArea" style="display: none;">
+                <div class="preview-container">
+                    <img id="base64Preview" class="preview" src="" alt="Base64预览">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="download-btn" id="downloadBtn">下载图片</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 标签页切换功能
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有活动状态
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.style.display = 'none');
+                    
+                    // 添加当前活动状态
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).style.display = 'block';
+                });
+            });
+            
+            // 图片转Base64标签页功能
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const imageResultArea = document.getElementById('imageResultArea');
+            const preview = document.getElementById('preview');
+            const base64Result = document.getElementById('base64Result');
+            const copyBtn = document.getElementById('copyBtn');
+            
+            // 点击上传区域触发文件选择
+            uploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            // 拖放功能
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.classList.add('highlight');
+            });
+            
+            uploadArea.addEventListener('dragleave', function() {
+                uploadArea.classList.remove('highlight');
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.classList.remove('highlight');
+                
+                if (e.dataTransfer.files.length) {
+                    handleFile(e.dataTransfer.files[0]);
+                }
+            });
+            
+            // 文件选择按钮点击
+            uploadBtn.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            // 文件输入变化
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length) {
+                    handleFile(fileInput.files[0]);
+                }
+            });
+            
+            // 复制按钮点击
+            copyBtn.addEventListener('click', function() {
+                base64Result.select();
+                document.execCommand('copy');
+                alert('Base64编码已复制到剪贴板！');
+            });
+            
+            // 处理文件函数
+            function handleFile(file) {
+                // 检查是否是图片文件
+                if (!file.type.match('image.*')) {
+                    alert('请选择图片文件！');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // 显示预览
+                    preview.src = e.target.result;
+                    
+                    // 获取Base64编码
+                    const base64String = e.target.result.split(',')[1];
+                    base64Result.value = 'data:' + file.type + ';base64,' + base64String;
+                    
+                    // 显示结果区域
+                    imageResultArea.style.display = 'block';
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            // Base64转图片标签页功能
+            const base64Input = document.getElementById('base64Input');
+            const convertBtn = document.getElementById('convertBtn');
+            const base64ResultArea = document.getElementById('base64ResultArea');
+            const base64Preview = document.getElementById('base64Preview');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            // Base64转换按钮点击
+            convertBtn.addEventListener('click', function() {
+                const base64Data = base64Input.value.trim();
+                
+                if (!base64Data) {
+                    alert('请输入Base64编码！');
+                    return;
+                }
+                
+                // 检查是否是有效的图片Base64编码
+                if (!base64Data.startsWith('data:image/')) {
+                    alert('无效的Base64编码！必须以"data:image/"开头');
+                    return;
+                }
+                
+                // 显示预览
+                base64Preview.src = base64Data;
+                
+                // 显示结果区域
+                base64ResultArea.style.display = 'block';
+            });
+            
+            // 下载按钮点击
+            downloadBtn.addEventListener('click', function() {
+                const base64Data = base64Input.value.trim();
+                
+                if (!base64Data) {
+                    alert('请输入Base64编码！');
+                    return;
+                }
+                
+                // 解析Base64数据
+                const dataParts = base64Data.split(',');
+                if (dataParts.length < 2) {
+                    alert('无效的Base64编码！');
+                    return;
+                }
+                
+                const mimeType = dataParts[0].split(':')[1].split(';')[0];
+                const base64String = dataParts[1];
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = 'converted-image.' + mimeType.split('/')[1];
+                link.href = base64Data;
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html>

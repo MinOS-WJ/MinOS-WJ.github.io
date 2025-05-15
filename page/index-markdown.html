@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown 编辑器</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .file-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .file-button {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 14px;
+        }
+        
+        .file-button:hover {
+            background-color: #2980b9;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .editor-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .editor-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 12px;
+            background-color: #f0f3f7;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .toolbar-group {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+        }
+        
+        .toolbar-button {
+            background: none;
+            border: 1px solid #ddd;
+            color: #555;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .toolbar-button:hover {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .toolbar-button.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .editor-content {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .editor-textarea {
+            flex: 1;
+            border: none;
+            padding: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            resize: none;
+            outline: none;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ddd;
+            min-height: 600px;
+        }
+        
+        .editor-preview {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #fff;
+            max-height: 600px;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px 10px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .preview-title {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .preview-actions button {
+            background: none;
+            border: none;
+            color: #555;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            font-size: 14px;
+        }
+        
+        .preview-actions button:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Markdown preview styles */
+        .preview-content {
+            line-height: 1.6;
+        }
+        
+        .preview-content h1 {
+            font-size: 2em;
+            margin-bottom: 0.67em;
+            color: #2c3e50;
+        }
+        
+        .preview-content h2 {
+            font-size: 1.5em;
+            margin-bottom: 0.67em;
+            color: #34495e;
+        }
+        
+        .preview-content h3 {
+            font-size: 1.17em;
+            margin-bottom: 0.67em;
+            color: #2c3e50;
+        }
+        
+        .preview-content p {
+            margin-bottom: 1em;
+            color: #333;
+        }
+        
+        .preview-content ul, .preview-content ol {
+            padding-left: 2em;
+            margin-bottom: 1em;
+            color: #333;
+        }
+        
+        .preview-content li {
+            margin-bottom: 0.5em;
+            color: #333;
+        }
+        
+        .preview-content blockquote {
+            margin: 1em 0;
+            padding-left: 1em;
+            border-left: 4px solid #ddd;
+            color: #555;
+        }
+        
+        .preview-content code {
+            font-family: monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: #333;
+        }
+        
+        .preview-content pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1em;
+            color: #333;
+        }
+        
+        .preview-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        .preview-content hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 2em 0;
+        }
+        
+        .preview-content a {
+            color: #0275d8;
+            text-decoration: none;
+        }
+        
+        .preview-content a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 帮助对话框样式 */
+        .help-dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            max-width: 500px;
+            width: 90%;
+            z-index: 1000;
+        }
+        
+        .help-dialog h3 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .help-dialog ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .help-dialog li {
+            margin-bottom: 10px;
+        }
+        
+        .help-dialog button {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .editor-content {
+                flex-direction: column;
+            }
+            
+            .editor-preview {
+                display: none;
+            }
+            
+            .preview-header {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Markdown 编辑器</h1>
+            <div class="file-actions">
+                <button class="file-button" id="saveButton">保存文件</button>
+                <button class="file-button" id="openButton">打开文件</button>
+                <button class="file-button" id="downloadButton">导出 HTML</button>
+                <button class="file-button" id="helpButton">帮助</button>
+            </div>
+        </header>
+        
+        <div class="editor-container">
+            <div class="editor-main">
+                <div class="editor-toolbar">
+                    <div class="toolbar-group">
+                        <button class="toolbar-button" title="加粗" onclick="formatText('**', '**')"><strong>B</strong></button>
+                        <button class="toolbar-button" title="斜体" onclick="formatText('*', '*')"><em>I</em></button>
+                        <button class="toolbar-button" title="标题" onclick="formatText('# ', '')">H1</button>
+                        <button class="toolbar-button" title="二级标题" onclick="formatText('## ', '')">H2</button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-button" title="列表" onclick="formatText('- ', '\n- ')">列表</button>
+                        <button class="toolbar-button" title="有序列表" onclick="formatText('1. ', '\n1. ')">有序列表</button>
+                        <button class="toolbar-button" title="引用" onclick="formatText('> ', '')">引用</button>
+                        <button class="toolbar-button" title="水平线" onclick="insertLine()">分割线</button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-button" title="链接" onclick="insertLink()">链接</button>
+                        <button class="toolbar-button" title="图片" onclick="insertImage()">图片</button>
+                        <button class="toolbar-button" title="代码块" onclick="formatText('```\n', '\n```')">代码块</button>
+                    </div>
+                </div>
+                
+                <div class="editor-content">
+                    <textarea id="editor" class="editor-textarea" placeholder="在这里输入 Markdown 文本..."></textarea>
+                    
+                    <div class="editor-preview">
+                        <div class="preview-header">
+                            <div class="preview-title">预览</div>
+                            <div class="preview-actions">
+                                <button id="togglePreview">分屏模式</button>
+                            </div>
+                        </div>
+                        <div id="preview" class="preview-content">
+                            <p>开始输入以查看预览</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 帮助对话框 -->
+    <div class="overlay" id="overlay"></div>
+    <div class="help-dialog" id="helpDialog">
+        <h3>快捷键指南</h3>
+        <ul>
+            <li><strong>Ctrl + S</strong>: 保存文件</li>
+            <li><strong>Ctrl + O</strong>: 打开文件</li>
+            <li><strong>Ctrl + P</strong>: 导出 HTML</li>
+            <li><strong>Ctrl + Z</strong>: 撤销</li>
+            <li><strong>Ctrl + Y</strong>: 重做</li>
+            <li><strong>Ctrl + B</strong>: 加粗</li>
+            <li><strong>Ctrl + I</strong>: 斜体</li>
+            <li><strong>Ctrl + H</strong>: 标题</li>
+            <li><strong>Ctrl + L</strong>: 链接</li>
+            <li><strong>Ctrl + Q</strong>: 列表</li>
+            <li><strong>Ctrl + M</strong>: 显示/隐藏帮助</li>
+        </ul>
+        <button id="closeHelp">关闭</button>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const editor = document.getElementById('editor');
+        const preview = document.getElementById('preview');
+        const toggleButton = document.getElementById('togglePreview');
+        const saveButton = document.getElementById('saveButton');
+        const openButton = document.getElementById('openButton');
+        const downloadButton = document.getElementById('downloadButton');
+        const helpButton = document.getElementById('helpButton');
+        const helpDialog = document.getElementById('helpDialog');
+        const closeHelp = document.getElementById('closeHelp');
+        const overlay = document.getElementById('overlay');
+        
+        // 实时预览
+        editor.addEventListener('input', updatePreview);
+        
+        // 初始化
+        updatePreview();
+        
+        // 更新预览
+        function updatePreview() {
+            const markdown = editor.value;
+            preview.innerHTML = markdownToHTML(markdown);
+        }
+        
+        // Markdown转HTML
+        function markdownToHTML(markdown) {
+            // 简单的Markdown解析，实际应用中可以使用marked.js等库
+            let html = markdown
+                .replace(/^(#+\s.*)$/gm, (match) => {
+                    const level = match.match(/#/g).length;
+                    const text = match.replace(/#+\s/, '');
+                    return `<h${level}>${text}</h${level}>`;
+                })
+                .replace(/(\*\*|\*\*|__)(.*?)\1/g, '<strong>$2</strong>')
+                .replace(/(\*|_)(.*?)\1/g, '<em>$2</em>')
+                .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">')
+                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
+                .replace(/^([*+-]|\d+\.)\s(.*?)$/gm, (match) => {
+                    const item = match.replace(/^[*+-]|\d+\.\s/, '');
+                    return `<li>${item}</li>`;
+                })
+                .replace(/^\s{0,3}(```)([\s\S]*?)\1/gm, (match) => {
+                    const code = match.replace(/```\s?/, '').trim();
+                    return `<pre><code>${code}</code></pre>`;
+                })
+                .replace(/^(>.*?)$/gm, (match) => {
+                    return match.replace('>', '<blockquote><p>').replace(/\n$/, '</p></blockquote>');
+                })
+                .replace(/---/g, '<hr>')
+                .replace(/^(?!<h|<ul|<ol|<blockquote|<hr>)(.*?)$/gm, (match) => {
+                    return `<p>${match}</p>`;
+                });
+            
+            // 处理列表
+            html = html.replace(/(<li>.*<\/li>)+/gm, (match) => {
+                return `<ul>${match}</ul>`;
+            });
+            
+            // 处理换行
+            html = html.replace(/<p>(.*?)\n(?!<\/p>)/gm, '<p>$1<br></p>');
+            
+            return html;
+        }
+        
+        // 格式化文本
+        function formatText(start, end) {
+            const startLength = start.length;
+            const endLength = end.length;
+            
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+            const selectedText = selection.toString();
+            
+            if (selectedText) {
+                // 如果有选中文字，则围绕选中的文字添加格式
+                const before = selectedText;
+                const after = selectedText;
+                const replacement = start + before + end;
+                
+                // 替换选中的文本
+                range.deleteContents();
+                range.insertNode(document.createTextNode(replacement));
+                
+                // 重新选择新插入的文本
+                const newRange = document.createRange();
+                newRange.setStart(range.startContainer, range.startOffset);
+                newRange.setEnd(range.startContainer, range.startOffset + replacement.length);
+                selection.removeAllRanges();
+                selection.addRange(newRange);
+            } else {
+                // 如果没有选中文本，则插入格式符
+                const before = start;
+                const after = end;
+                
+                // 插入格式符
+                editor.focus();
+                document.execCommand('insertText', false, before + after);
+                
+                // 将光标定位到格式符中间
+                const pos = editor.selectionStart - after.length;
+                editor.setSelectionRange(pos, pos);
+            }
+            
+            updatePreview();
+        }
+        
+        // 插入链接
+        function insertLink() {
+            const text = prompt('请输入链接文本:', '');
+            const url = prompt('请输入链接地址:', '');
+            
+            if (text && url) {
+                const link = `[${text}](${url})`;
+                editor.focus();
+                document.execCommand('insertText', false, link);
+                updatePreview();
+            }
+        }
+        
+        // 插入图片
+        function insertImage() {
+            const alt = prompt('请输入图片描述:', '');
+            const src = prompt('请输入图片地址:', '');
+            
+            if (alt && src) {
+                const img = `![${alt}](${src})`;
+                editor.focus();
+                document.execCommand('insertText', false, img);
+                updatePreview();
+            }
+        }
+        
+        // 插入水平线
+        function insertLine() {
+            editor.focus();
+            document.execCommand('insertText', false, '\n---\n');
+            updatePreview();
+        }
+        
+        // 切换预览模式
+        let isSplitScreen = true;
+        toggleButton.addEventListener('click', function() {
+            isSplitScreen = !isSplitScreen;
+            
+            if (isSplitScreen) {
+                editor.style.display = 'block';
+                preview.style.display = 'block';
+                toggleButton.textContent = '分屏模式';
+            } else {
+                editor.style.display = 'none';
+                preview.style.display = 'block';
+                toggleButton.textContent = '编辑模式';
+            }
+        });
+        
+        // 保存文件
+        saveButton.addEventListener('click', function() {
+            saveFile();
+        });
+        
+        // 打开文件
+        openButton.addEventListener('click', function() {
+            openFile();
+        });
+        
+        // 导出HTML
+        downloadButton.addEventListener('click', function() {
+            downloadHTML();
+        });
+        
+        // 显示帮助
+        helpButton.addEventListener('click', function() {
+            showHelp();
+        });
+        
+        // 关闭帮助
+        closeHelp.addEventListener('click', function() {
+            hideHelp();
+        });
+        
+        // 点击遮罩层关闭帮助
+        overlay.addEventListener('click', function() {
+            hideHelp();
+        });
+        
+        // 显示帮助对话框
+        function showHelp() {
+            helpDialog.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+        
+        // 隐藏帮助对话框
+        function hideHelp() {
+            helpDialog.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+        
+        // 保存文件到本地
+        function saveFile() {
+            const content = editor.value;
+            const blob = new Blob([content], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'document.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // 打开文件
+        function openFile() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.md,.markdown';
+            
+            input.onchange = e => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        editor.value = event.target.result;
+                        updatePreview();
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            
+            input.click();
+        }
+        
+        // 导出HTML
+        function downloadHTML() {
+            const markdown = editor.value;
+            const html = markdownToHTML(markdown);
+            
+            const style = `
+                <style>
+                    body {
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                        max-width: 800px;
+                        margin: 0 auto;
+                        padding: 20px;
+                    }
+                    h1, h2, h3, h4, h5, h6 {
+                        margin-top: 1.5em;
+                        margin-bottom: 0.5em;
+                    }
+                    p {
+                        margin-bottom: 1em;
+                    }
+                    ul, ol {
+                        padding-left: 2em;
+                        margin-bottom: 1em;
+                    }
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                    code {
+                        font-family: monospace;
+                        background-color: #f5f5f5;
+                        padding: 2px 4px;
+                        border-radius: 3px;
+                    }
+                    pre {
+                        background-color: #f5f5f5;
+                        padding: 15px;
+                        border-radius: 5px;
+                        overflow-x: auto;
+                    }
+                    blockquote {
+                        border-left: 4px solid #ddd;
+                        padding-left: 10px;
+                        margin: 1em 0;
+                    }
+                </style>
+            `;
+            
+            const fullHTML = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Markdown 导出</title>
+                    ${style}
+                </head>
+                <body>
+                    ${html}
+                </body>
+                </html>
+            `;
+            
+            const blob = new Blob([fullHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'document.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', function(e) {
+            // Ctrl + S 保存
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveFile();
+            }
+            
+            // Ctrl + O 打开
+            if (e.ctrlKey && e.key === 'o') {
+                e.preventDefault();
+                openFile();
+            }
+            
+            // Ctrl + P 导出HTML
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                downloadHTML();
+            }
+            
+            // Ctrl + Z 撤销
+            if (e.ctrlKey && e.key === 'z') {
+                document.execCommand('undo');
+            }
+            
+            // Ctrl + Y 重做
+            if (e.ctrlKey && e.key === 'y') {
+                document.execCommand('redo');
+            }
+            
+            // Ctrl + B 加粗
+            if (e.ctrlKey && e.key === 'b') {
+                e.preventDefault();
+                formatText('**', '**');
+            }
+            
+            // Ctrl + I 斜体
+            if (e.ctrlKey && e.key === 'i') {
+                e.preventDefault();
+                formatText('*', '*');
+            }
+            
+            // Ctrl + L 链接
+            if (e.ctrlKey && e.key === 'l') {
+                e.preventDefault();
+                insertLink();
+            }
+            
+            // Ctrl + Q 列表
+            if (e.ctrlKey && e.key === 'q') {
+                e.preventDefault();
+                formatText('- ', '\n- ');
+            }
+            
+            // Ctrl + H 标题
+            if (e.ctrlKey && e.key === 'h') {
+                e.preventDefault();
+                formatText('# ', '');
+            }
+            
+            // Ctrl + M 显示/隐藏帮助
+            if (e.ctrlKey && e.key === 'm') {
+                if (helpDialog.style.display === 'block') {
+                    hideHelp();
+                } else {
+                    showHelp();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
