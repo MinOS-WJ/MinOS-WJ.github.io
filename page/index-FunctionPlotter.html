@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Plotter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+            height: 100vh;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            width: 100%;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: crosshair;
+            width: 100%;
+            height: calc(100vh - 200px); /* Full screen minus header and input container */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Function Plotter</h1>
+        <p>Enter a mathematical function to plot it on the graph.</p>
+    </header>
+    <div class="container">
+        <div class="input-container">
+            <input type="text" id="functionInput" placeholder="Enter function like y=x^2+x or y=sin(x)">
+            <button onclick="plotFunction()">Plot Function</button>
+        </div>
+        <div id="errorMessage" class="error"></div>
+        <canvas id="graphCanvas"></canvas>
+    </div>
+
+    <script>
+        let scale = 50; // Initial scale factor for pixels per unit
+        let offsetX = 0; // Horizontal offset
+        let offsetY = 0; // Vertical offset
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+
+        const canvas = document.getElementById('graphCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+        }
+
+        canvas.addEventListener('mousedown', startDrag);
+        canvas.addEventListener('mousemove', drag);
+        canvas.addEventListener('mouseup', endDrag);
+        canvas.addEventListener('wheel', zoom);
+
+        function plotFunction() {
+            // Clear the canvas and error message
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById('errorMessage').textContent = '';
+
+            // Get user input
+            const userInput = document.getElementById('functionInput').value;
+
+            // Replace '^' with '**'
+            let sanitizedInput = userInput.replace(/\^/g, '**');
+
+            // Allow mathematical functions
+            sanitizedInput = sanitizedInput.replace(/sin\(/g, 'Math.sin(')
+                                          .replace(/cos\(/g, 'Math.cos(')
+                                          .replace(/tan\(/g, 'Math.tan(')
+                                          .replace(/sqrt\(/g, 'Math.sqrt(')
+                                          .replace(/abs\(/g, 'Math.abs(')
+                                          .replace(/exp\(/g, 'Math.exp(')
+                                          .replace(/log\(/g, 'Math.log(');
+
+            // Validate and parse the function
+            try {
+                const func = new Function('x', 'return ' + sanitizedInput);
+
+                drawGraph(func);
+            } catch (e) {
+                document.getElementById('errorMessage').textContent = 'Invalid function expression.';
+            }
+        }
+
+        function drawGraph(func) {
+            // Set up the graph
+            const originX = canvas.width / 2 + offsetX;
+            const originY = canvas.height / 2 + offsetY;
+
+            // Draw axes
+            ctx.beginPath();
+            ctx.moveTo(originX, 0);
+            ctx.lineTo(originX, canvas.height);
+            ctx.moveTo(0, originY);
+            ctx.lineTo(canvas.width, originY);
+            ctx.stroke();
+
+            // Draw grid lines
+            ctx.strokeStyle = '#eee';
+            for (let i = -originX; i <= originX; i += scale) {
+                ctx.beginPath();
+                ctx.moveTo(i + originX, 0);
+                ctx.lineTo(i + originX, canvas.height);
+                ctx.stroke();
+            }
+            for (let j = -originY; j <= originY; j += scale) {
+                ctx.beginPath();
+                ctx.moveTo(0, j + originY);
+                ctx.lineTo(canvas.width, j + originY);
+                ctx.stroke();
+            }
+
+            // Plot the function
+            ctx.strokeStyle = 'blue';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            let prevX = null, prevY = null;
+            for (let x = (-originX + offsetX) / scale; x <= (canvas.width - originX + offsetX) / scale; x += 0.1) {
+                try {
+                    const y = func(x);
+                    if (!isNaN(y)) {
+                        const px = x * scale + originX;
+                        const py = -y * scale + originY;
+                        if (prevX !== null && prevY !== null) {
+                            ctx.lineTo(px, py);
+                        } else {
+                            ctx.moveTo(px, py);
+                        }
+                        prevX = px;
+                        prevY = py;
+                    }
+                } catch (e) {}
+            }
+            ctx.stroke();
+        }
+
+        function startDrag(e) {
+            isDragging = true;
+            dragStartX = e.clientX - offsetX;
+            dragStartY = e.clientY - offsetY;
+        }
+
+        function drag(e) {
+            if (isDragging) {
+                offsetX = e.clientX - dragStartX;
+                offsetY = e.clientY - dragStartY;
+                plotFunction();
+            }
+        }
+
+        function endDrag() {
+            isDragging = false;
+        }
+
+        function zoom(e) {
+            e.preventDefault();
+            const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
+            scale *= zoomFactor;
+            plotFunction();
+        }
+
+        // Adjust canvas size when the window resizes
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            plotFunction();
+        });
+
+        // Initial setup
+        resizeCanvas();
+        plotFunction();
+    </script>
+</body>
+</html>
