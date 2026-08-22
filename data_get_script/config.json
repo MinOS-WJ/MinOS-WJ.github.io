@@ -1,0 +1,17 @@
+{
+  "site": "aitier.net",
+  "locale": "zh",
+  "domains": {
+    "general": "https://aitier.net/zh/rankings/general",
+    "coding": "https://aitier.net/zh/rankings/coding",
+    "math": "https://aitier.net/zh/rankings/math",
+    "science": "https://aitier.net/zh/rankings/science",
+    "reasoning": "https://aitier.net/zh/rankings/reasoning",
+    "agents": "https://aitier.net/zh/rankings/agents",
+    "multimodal": "https://aitier.net/zh/rankings/multimodal",
+    "image-gen": "https://aitier.net/zh/rankings/image-gen",
+    "video-gen": "https://aitier.net/zh/rankings/video-gen",
+    "image-to-video": "https://aitier.net/zh/rankings/image-to-video",
+    "audio": "https://aitier.net/zh/rankings/audio"
+  }
+}
