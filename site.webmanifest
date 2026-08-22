@@ -1,0 +1,19 @@
+{
+  "name": "MinOS-WJ 工作台",
+  "short_name": "MinOS-WJ",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#2563eb",
+  "description": "浏览器工具、小游戏、资讯与 AI 对话工作台",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
