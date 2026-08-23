@@ -7,6 +7,8 @@
 <style>
 :root{--bg:#f5f7fa;--panel:#fff;--line:#dfe4ea;--text:#1f2937;--muted:#667085;--brand:#2563eb}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,"Microsoft YaHei",sans-serif}.wrap{max-width:700px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between}.top a{color:var(--brand);text-decoration:none}.panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:20px}.bar{display:flex;justify-content:space-between;align-items:center;gap:8px}.score{font-weight:600}.score small{display:block;color:var(--muted);font-weight:400}canvas{display:block;width:min(100%,420px);aspect-ratio:3/4;margin:16px auto;background:#0f172a;border-radius:8px;touch-action:none}button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 12px;cursor:pointer}button.primary{background:var(--brand);color:#fff;border-color:var(--brand)}.hint{color:var(--muted);font-size:13px;text-align:center;margin-bottom:0}
 </style>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="manifest" href="../../site.webmanifest">
 </head>
 <body>
 <main class="wrap"><div class="top"><a href="../../index.html">← 返回小游戏</a><strong>飞机大战</strong></div><section class="panel"><div class="bar"><span class="score" id="score">得分 0<small id="stats">生命 3 · 关卡 1</small></span><div><button id="pause">暂停</button><button class="primary" id="reset">重新开始</button></div></div><canvas id="game" width="360" height="480"></canvas><p class="hint">方向键 / WASD 移动，Shift 加速，空格连续射击；触屏拖动战机。</p></section></main>
