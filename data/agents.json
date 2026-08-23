@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "fetched_at": "2026-08-22T02:28:58.315295Z",
+  "fetched_at": "2026-08-23T18:53:25.855253Z",
   "domain": "agents",
   "url": "https://aitier.net/zh/rankings/agents",
-  "count": 148,
+  "count": 147,
   "model_count": 168,
   "rankings": [
     {
@@ -126,9 +126,11 @@
           "coding",
           "science",
           "agents",
-          "multimodal"
+          "multimodal",
+          "math",
+          "reasoning"
         ],
-        "rankingCount": 5,
+        "rankingCount": 7,
         "llmStatsId": "kimi-k3",
         "llmStatsIds": "$undefined",
         "aliases": "$undefined",
@@ -603,9 +605,11 @@
           "coding",
           "science",
           "agents",
-          "multimodal"
+          "multimodal",
+          "math",
+          "reasoning"
         ],
-        "rankingCount": 5,
+        "rankingCount": 7,
         "llmStatsId": "claude-opus-5",
         "llmStatsIds": "$undefined",
         "aliases": "$undefined",
@@ -1225,11 +1229,9 @@
           "general",
           "coding",
           "science",
-          "math",
-          "reasoning",
           "agents"
         ],
-        "rankingCount": 6,
+        "rankingCount": 4,
         "llmStatsId": "grok-4.6",
         "llmStatsIds": "$undefined",
         "aliases": "$undefined",
@@ -1761,11 +1763,9 @@
           "coding",
           "science",
           "agents",
-          "multimodal",
-          "math",
-          "reasoning"
+          "multimodal"
         ],
-        "rankingCount": 7,
+        "rankingCount": 5,
         "llmStatsId": "gpt-5.5",
         "llmStatsIds": "$undefined",
         "aliases": "$undefined",
@@ -2101,9 +2101,11 @@
           "coding",
           "science",
           "agents",
-          "multimodal"
+          "multimodal",
+          "math",
+          "reasoning"
         ],
-        "rankingCount": 5,
+        "rankingCount": 7,
         "llmStatsId": "claude-sonnet-5",
         "llmStatsIds": "$undefined",
         "aliases": "$undefined",
@@ -2975,7 +2977,7 @@
           "input": 0.95,
           "output": 4,
           "blended": 1.712,
-          "cacheRead": 0.0976,
+          "cacheRead": 0.16,
           "cacheWrite": null,
           "currency": "USD"
         },
@@ -3355,9 +3357,11 @@
           "coding",
           "science",
           "agents",
-          "multimodal"
+          "multimodal",
+          "math",
+          "reasoning"
         ],
-        "rankingCount": 5,
+        "rankingCount": 7,
         "llmStatsId": "gemini-3.7-flash",
         "llmStatsIds": "$undefined",
         "aliases": "$undefined",
@@ -7188,9 +7192,11 @@
           "general",
           "coding",
           "science",
-          "agents"
+          "agents",
+          "math",
+          "reasoning"
         ],
-        "rankingCount": 4,
+        "rankingCount": 6,
         "llmStatsId": "deepseek-v4-flash-max",
         "llmStatsIds": "$undefined",
         "aliases": "$undefined",
@@ -8314,7 +8320,7 @@
           "input": 0.15,
           "output": 0.6,
           "blended": 0.262,
-          "cacheRead": 0.03,
+          "cacheRead": null,
           "cacheWrite": null,
           "currency": "USD"
         },
@@ -11414,9 +11420,11 @@
           "coding",
           "science",
           "agents",
-          "multimodal"
+          "multimodal",
+          "math",
+          "reasoning"
         ],
-        "rankingCount": 5,
+        "rankingCount": 7,
         "llmStatsId": "gpt-5.4-mini",
         "llmStatsIds": "$undefined",
         "aliases": "$undefined",
@@ -11640,7 +11648,7 @@
           "input": 0.56,
           "output": 1.68,
           "blended": 0.84,
-          "cacheRead": 0.13,
+          "cacheRead": 0.55,
           "cacheWrite": null,
           "currency": "USD"
         },
@@ -11930,9 +11938,9 @@
         "releaseDate": "2026-08-10",
         "evaluations": "$undefined",
         "pricing": {
-          "input": 0.3,
-          "output": 1.1,
-          "blended": 0.5,
+          "input": 0.35,
+          "output": 1.5,
+          "blended": 0.6375,
           "cacheRead": 0.04,
           "cacheWrite": null,
           "currency": "USD"
@@ -12351,7 +12359,7 @@
           "input": 0.28,
           "output": 0.42,
           "blended": 0.315,
-          "cacheRead": 0.1345,
+          "cacheRead": 0.13,
           "cacheWrite": null,
           "currency": "USD"
         },
@@ -12465,88 +12473,6 @@
         "llmStatsProviders": "$undefined",
         "sources": "$undefined",
         "llmStatsUrl": "https://llm-stats.com/models/gemini-3.1-flash-lite-preview"
-      }
-    },
-    {
-      "id": "lfm-2.5-2.6b:agents",
-      "modelId": "lfm-2.5-2.6b",
-      "domain": "agents",
-      "source": "llm-stats",
-      "rank": 139,
-      "score": 29,
-      "metrics": {
-        "ls_claw-eval": 0.6285,
-        "ls_claw-eval_normalized": 63,
-        "ls_claw-eval_percentile": 38,
-        "ls_claw-eval_max": 1,
-        "ls_claw-eval_verified": 0,
-        "ls_claw-eval_self_reported": 1,
-        "ls_bfcl-v4": 0.5688,
-        "ls_bfcl-v4_normalized": 57,
-        "ls_bfcl-v4_percentile": 29,
-        "ls_bfcl-v4_max": 1,
-        "ls_bfcl-v4_verified": 0,
-        "ls_bfcl-v4_self_reported": 1,
-        "ls_tau3-banking": 0.0567,
-        "ls_tau3-banking_normalized": 6,
-        "ls_tau3-banking_percentile": 0,
-        "ls_tau3-banking_max": 1,
-        "ls_tau3-banking_verified": 0,
-        "ls_tau3-banking_self_reported": 1,
-        "ls_pinchbench": 0.6822,
-        "ls_pinchbench_normalized": 68,
-        "ls_pinchbench_percentile": 0,
-        "ls_pinchbench_max": 1,
-        "ls_pinchbench_verified": 0,
-        "ls_pinchbench_self_reported": 1,
-        "ls_benchmarks_evaluated": 4
-      },
-      "updatedAt": "$D2026-08-13T20:00:00.564Z",
-      "model": {
-        "id": "lfm-2.5-2.6b",
-        "name": "LFM2.5-2.6B",
-        "provider": "Liquid AI",
-        "kind": "model",
-        "family": "",
-        "openWeight": true,
-        "releaseDate": "2026-08-04",
-        "evaluations": "$undefined",
-        "pricing": {
-          "input": 0,
-          "output": 0,
-          "blended": 0,
-          "cacheRead": null,
-          "cacheWrite": null,
-          "currency": "USD"
-        },
-        "speed": "$undefined",
-        "capabilities": {
-          "coding": 70,
-          "reasoning": 50,
-          "creativity": 0,
-          "multilingual": 0,
-          "multimodal": 0,
-          "agents": 50
-        },
-        "domains": [
-          "agents"
-        ],
-        "rankingCount": 1,
-        "llmStatsId": "lfm-2.5-2.6b",
-        "llmStatsIds": "$undefined",
-        "aliases": "$undefined",
-        "license": "$undefined",
-        "llmStatsScores": "$undefined",
-        "llmStatsBenchmarkScores": "$undefined",
-        "description": "$undefined",
-        "modalities": [
-          "text"
-        ],
-        "contextWindow": 65536,
-        "paramCount": 2690000000,
-        "llmStatsProviders": "$undefined",
-        "sources": "$undefined",
-        "llmStatsUrl": "https://llm-stats.com/models/lfm-2.5-2.6b"
       }
     },
     {
@@ -13490,30 +13416,30 @@
       "llmStatsUrl": "https://llm-stats.com/models/claude-opus-4-8"
     },
     {
-      "id": "gpt-5-5",
-      "name": "GPT-5.5 (xhigh)",
-      "provider": "OpenAI",
+      "id": "claude-opus-5",
+      "name": "Claude Opus 5 (Adaptive Reasoning, Max Effort)",
+      "provider": "Anthropic",
       "kind": "model",
-      "family": "GPT",
+      "family": "Claude",
       "openWeight": false,
-      "releaseDate": "2026-04-23",
+      "releaseDate": "2026-07-24",
       "evaluations": "$undefined",
       "pricing": {
         "input": 5,
-        "output": 30,
-        "blended": 11.25,
+        "output": 25,
+        "blended": 10,
         "cacheRead": 0.5,
-        "cacheWrite": null,
+        "cacheWrite": 6.25,
         "currency": "USD"
       },
       "speed": "$undefined",
       "capabilities": {
-        "coding": 75,
-        "reasoning": 70,
+        "coding": 78,
+        "reasoning": 63,
         "creativity": 0,
         "multilingual": 0,
-        "multimodal": 85,
-        "agents": 80
+        "multimodal": 80,
+        "agents": 50
       },
       "domains": [
         "general",
@@ -13525,7 +13451,7 @@
         "reasoning"
       ],
       "rankingCount": 7,
-      "llmStatsId": "gpt-5.5",
+      "llmStatsId": "claude-opus-5",
       "llmStatsIds": "$undefined",
       "aliases": "$undefined",
       "license": "$undefined",
@@ -13537,11 +13463,118 @@
         "pdf",
         "text"
       ],
-      "contextWindow": 1050000,
+      "contextWindow": 1000000,
       "paramCount": null,
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/gpt-5.5"
+      "llmStatsUrl": "https://llm-stats.com/models/claude-opus-5"
+    },
+    {
+      "id": "claude-sonnet-5",
+      "name": "Claude Sonnet 5 (Adaptive Reasoning, Max Effort)",
+      "provider": "Anthropic",
+      "kind": "model",
+      "family": "Claude",
+      "openWeight": false,
+      "releaseDate": "2026-06-30",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 2,
+        "output": 10,
+        "blended": 4,
+        "cacheRead": 0.2,
+        "cacheWrite": 2.5,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 90,
+        "reasoning": 42,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 80,
+        "agents": 50
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "agents",
+        "multimodal",
+        "math",
+        "reasoning"
+      ],
+      "rankingCount": 7,
+      "llmStatsId": "claude-sonnet-5",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "pdf",
+        "text"
+      ],
+      "contextWindow": 1000000,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/claude-sonnet-5"
+    },
+    {
+      "id": "gpt-5-4-mini-non-reasoning",
+      "name": "GPT-5.4 mini (Non-Reasoning)",
+      "provider": "OpenAI",
+      "kind": "model",
+      "family": "GPT",
+      "openWeight": false,
+      "releaseDate": "2026-03-17",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 0.75,
+        "output": 4.5,
+        "blended": 1.688,
+        "cacheRead": 0.075,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 60,
+        "reasoning": 63,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 85,
+        "agents": 60
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "agents",
+        "multimodal",
+        "math",
+        "reasoning"
+      ],
+      "rankingCount": 7,
+      "llmStatsId": "gpt-5.4-mini",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "text"
+      ],
+      "contextWindow": 400000,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/gpt-5.4-mini"
     },
     {
       "id": "gemini-3-1-pro-preview",
@@ -13768,6 +13801,116 @@
       "llmStatsUrl": "https://llm-stats.com/models/gemini-3.6-flash"
     },
     {
+      "id": "gemini-3-7-flash",
+      "name": "Gemini 3.7 Flash (high)",
+      "provider": "Google",
+      "kind": "model",
+      "family": "Gemini",
+      "openWeight": false,
+      "releaseDate": "2026-08-13",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 0.75,
+        "output": 3.75,
+        "blended": 1.5,
+        "cacheRead": 0.075,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 76,
+        "reasoning": 100,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 80,
+        "agents": 100
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "agents",
+        "multimodal",
+        "math",
+        "reasoning"
+      ],
+      "rankingCount": 7,
+      "llmStatsId": "gemini-3.7-flash",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "audio",
+        "image",
+        "pdf",
+        "text",
+        "video"
+      ],
+      "contextWindow": 1048576,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/gemini-3.7-flash"
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3 (max)",
+      "provider": "Kimi",
+      "kind": "model",
+      "family": "Kimi",
+      "openWeight": true,
+      "releaseDate": "2026-07-16",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 3,
+        "output": 15,
+        "blended": 6,
+        "cacheRead": 0.3,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 76,
+        "reasoning": 80,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 80,
+        "agents": 92
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "agents",
+        "multimodal",
+        "math",
+        "reasoning"
+      ],
+      "rankingCount": 7,
+      "llmStatsId": "kimi-k3",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "text",
+        "video"
+      ],
+      "contextWindow": 1048576,
+      "paramCount": 2800000000000,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/kimi-k3"
+    },
+    {
       "id": "minimax-m3",
       "name": "MiniMax-M3",
       "provider": "MiniMax",
@@ -13987,7 +14130,7 @@
     },
     {
       "id": "qwen3-8-27b",
-      "name": "Qwen3.8 27B",
+      "name": "Qwen3.8 27B (xhigh)",
       "provider": "Alibaba",
       "kind": "model",
       "family": "Qwen",
@@ -13995,9 +14138,9 @@
       "releaseDate": "2026-08-14",
       "evaluations": "$undefined",
       "pricing": {
-        "input": 0.425,
-        "output": 3.1,
-        "blended": 1.094,
+        "input": 0.5,
+        "output": 3,
+        "blended": 1.125,
         "cacheRead": 0.05,
         "cacheWrite": null,
         "currency": "USD"
@@ -14093,6 +14236,57 @@
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
       "llmStatsUrl": "https://llm-stats.com/models/qwen3.8-max"
+    },
+    {
+      "id": "deepseek-v4-flash",
+      "name": "DeepSeek V4 Flash 0731 (Reasoning, Max Effort)",
+      "provider": "DeepSeek",
+      "kind": "model",
+      "family": "DeepSeek",
+      "openWeight": true,
+      "releaseDate": "2026-07-31",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 0.44,
+        "output": 1.32,
+        "blended": 0.66,
+        "cacheRead": 0.0028,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 80,
+        "reasoning": 80,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 0,
+        "agents": 60
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "agents",
+        "math",
+        "reasoning"
+      ],
+      "rankingCount": 6,
+      "llmStatsId": "deepseek-v4-flash-max",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "text"
+      ],
+      "contextWindow": 1000000,
+      "paramCount": 284000000000,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/deepseek-v4-flash-max"
     },
     {
       "id": "deepseek-v4-pro",
@@ -14302,59 +14496,6 @@
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
       "llmStatsUrl": "https://llm-stats.com/models/grok-4.5"
-    },
-    {
-      "id": "grok-4-6",
-      "name": "Grok 4.6 (high)",
-      "provider": "SpaceXAI",
-      "kind": "model",
-      "family": "Grok",
-      "openWeight": false,
-      "releaseDate": "2026-08-12",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 2,
-        "output": 6,
-        "blended": 3,
-        "cacheRead": 0.5,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 77,
-        "reasoning": 100,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 80,
-        "agents": 100
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "math",
-        "reasoning",
-        "agents"
-      ],
-      "rankingCount": 6,
-      "llmStatsId": "grok-4.6",
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "pdf",
-        "text"
-      ],
-      "contextWindow": 500000,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/grok-4.6"
     },
     {
       "id": "kimi-k2-7-code",
@@ -14674,110 +14815,6 @@
       "llmStatsUrl": "https://llm-stats.com/models/claude-opus-4-6"
     },
     {
-      "id": "claude-opus-5-high",
-      "name": "Claude Opus 5 (Adaptive Reasoning, High Effort)",
-      "provider": "Anthropic",
-      "kind": "model",
-      "family": "Claude",
-      "openWeight": false,
-      "releaseDate": "2026-07-24",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 5,
-        "output": 25,
-        "blended": 10,
-        "cacheRead": 0.5,
-        "cacheWrite": 6.25,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 77,
-        "reasoning": 37,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 80,
-        "agents": 0
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "math",
-        "reasoning"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": null,
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "pdf",
-        "text"
-      ],
-      "contextWindow": 1000000,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": null
-    },
-    {
-      "id": "claude-opus-5",
-      "name": "Claude Opus 5 (Adaptive Reasoning, Max Effort)",
-      "provider": "Anthropic",
-      "kind": "model",
-      "family": "Claude",
-      "openWeight": false,
-      "releaseDate": "2026-07-24",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 5,
-        "output": 25,
-        "blended": 10,
-        "cacheRead": 0.5,
-        "cacheWrite": 6.25,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 78,
-        "reasoning": 63,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 80,
-        "agents": 50
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "agents",
-        "multimodal"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": "claude-opus-5",
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "pdf",
-        "text"
-      ],
-      "contextWindow": 1000000,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/claude-opus-5"
-    },
-    {
       "id": "claude-sonnet-4-6",
       "name": "Claude Sonnet 4.6 (Non-reasoning, High Effort)",
       "provider": "Anthropic",
@@ -14830,108 +14867,6 @@
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
       "llmStatsUrl": "https://llm-stats.com/models/claude-sonnet-4-6"
-    },
-    {
-      "id": "claude-sonnet-5",
-      "name": "Claude Sonnet 5 (Adaptive Reasoning, Max Effort)",
-      "provider": "Anthropic",
-      "kind": "model",
-      "family": "Claude",
-      "openWeight": false,
-      "releaseDate": "2026-06-30",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 2,
-        "output": 10,
-        "blended": 4,
-        "cacheRead": 0.2,
-        "cacheWrite": 2.5,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 90,
-        "reasoning": 42,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 80,
-        "agents": 50
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "agents",
-        "multimodal"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": "claude-sonnet-5",
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "pdf",
-        "text"
-      ],
-      "contextWindow": 1000000,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/claude-sonnet-5"
-    },
-    {
-      "id": "deepseek-v4-flash-non-reasoning",
-      "name": "DeepSeek V4 Flash (Non-reasoning)",
-      "provider": "DeepSeek",
-      "kind": "model",
-      "family": "DeepSeek",
-      "openWeight": false,
-      "releaseDate": "2026-04-24",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 0.094,
-        "output": 0.195,
-        "blended": 0.119,
-        "cacheRead": 0.0028,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 0,
-        "reasoning": 18,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 0,
-        "agents": 0
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "math",
-        "reasoning"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": null,
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "text"
-      ],
-      "contextWindow": 1000000,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": null
     },
     {
       "id": "glm-5v-turbo",
@@ -15039,8 +14974,8 @@
       "llmStatsUrl": "https://llm-stats.com/models/gpt-5-2025-08-07"
     },
     {
-      "id": "gpt-5-2-non-reasoning",
-      "name": "GPT-5.2 (Non-reasoning)",
+      "id": "gpt-5-2-medium",
+      "name": "GPT-5.2 (medium)",
       "provider": "OpenAI",
       "kind": "model",
       "family": "GPT",
@@ -15058,7 +14993,7 @@
       "speed": "$undefined",
       "capabilities": {
         "coding": 0,
-        "reasoning": 36,
+        "reasoning": 62,
         "creativity": 0,
         "multilingual": 0,
         "multimodal": 85,
@@ -15194,58 +15129,6 @@
       "llmStatsUrl": "https://llm-stats.com/models/gpt-5.3-codex"
     },
     {
-      "id": "gpt-5-4-non-reasoning",
-      "name": "GPT-5.4 (Non-reasoning)",
-      "provider": "OpenAI",
-      "kind": "model",
-      "family": "GPT",
-      "openWeight": false,
-      "releaseDate": "2026-03-05",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 2.5,
-        "output": 15,
-        "blended": 5.625,
-        "cacheRead": 0.25,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 0,
-        "reasoning": 17,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 85,
-        "agents": 0
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "math",
-        "reasoning"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": null,
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "pdf",
-        "text"
-      ],
-      "contextWindow": 1050000,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": null
-    },
-    {
       "id": "gpt-5-4-low",
       "name": "GPT-5.4 (low)",
       "provider": "OpenAI",
@@ -15298,77 +15181,26 @@
       "llmStatsUrl": "https://llm-stats.com/models/gpt-5.4"
     },
     {
-      "id": "gpt-5-4-mini-non-reasoning",
-      "name": "GPT-5.4 mini (Non-Reasoning)",
+      "id": "gpt-5-4",
+      "name": "GPT-5.4 (xhigh)",
       "provider": "OpenAI",
       "kind": "model",
       "family": "GPT",
       "openWeight": false,
-      "releaseDate": "2026-03-17",
+      "releaseDate": "2026-03-05",
       "evaluations": "$undefined",
       "pricing": {
-        "input": 0.75,
-        "output": 4.5,
-        "blended": 1.688,
-        "cacheRead": 0.075,
+        "input": 2.5,
+        "output": 15,
+        "blended": 5.625,
+        "cacheRead": 0.25,
         "cacheWrite": null,
         "currency": "USD"
       },
       "speed": "$undefined",
       "capabilities": {
-        "coding": 60,
-        "reasoning": 63,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 85,
-        "agents": 60
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "agents",
-        "multimodal"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": "gpt-5.4-mini",
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "text"
-      ],
-      "contextWindow": 400000,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/gpt-5.4-mini"
-    },
-    {
-      "id": "gpt-5-4-mini",
-      "name": "GPT-5.4 mini (xhigh)",
-      "provider": "OpenAI",
-      "kind": "model",
-      "family": "GPT",
-      "openWeight": false,
-      "releaseDate": "2026-03-17",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 0.75,
-        "output": 4.5,
-        "blended": 1.688,
-        "cacheRead": 0.075,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 56,
-        "reasoning": 25,
+        "coding": 71,
+        "reasoning": 32,
         "creativity": 0,
         "multilingual": 0,
         "multimodal": 85,
@@ -15391,60 +15223,10 @@
       "description": "$undefined",
       "modalities": [
         "image",
+        "pdf",
         "text"
       ],
-      "contextWindow": 400000,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": null
-    },
-    {
-      "id": "gpt-5-4-nano-non-reasoning",
-      "name": "GPT-5.4 nano (Non-Reasoning)",
-      "provider": "OpenAI",
-      "kind": "model",
-      "family": "GPT",
-      "openWeight": false,
-      "releaseDate": "2026-03-17",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 0.2,
-        "output": 1.25,
-        "blended": 0.463,
-        "cacheRead": 0.02,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 0,
-        "reasoning": 11,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 85,
-        "agents": 0
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "math",
-        "reasoning"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": null,
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "text"
-      ],
-      "contextWindow": 400000,
+      "contextWindow": 1050000,
       "paramCount": null,
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
@@ -15502,6 +15284,109 @@
       "llmStatsUrl": "https://llm-stats.com/models/gpt-5.4-nano"
     },
     {
+      "id": "gpt-5-4-nano",
+      "name": "GPT-5.4 nano (xhigh)",
+      "provider": "OpenAI",
+      "kind": "model",
+      "family": "GPT",
+      "openWeight": false,
+      "releaseDate": "2026-03-17",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 0.2,
+        "output": 1.25,
+        "blended": 0.463,
+        "cacheRead": 0.02,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 56,
+        "reasoning": 24,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 85,
+        "agents": 0
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "math",
+        "reasoning"
+      ],
+      "rankingCount": 5,
+      "llmStatsId": null,
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "text"
+      ],
+      "contextWindow": 400000,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": null
+    },
+    {
+      "id": "gpt-5-5-non-reasoning",
+      "name": "GPT-5.5 (Non-reasoning)",
+      "provider": "OpenAI",
+      "kind": "model",
+      "family": "GPT",
+      "openWeight": false,
+      "releaseDate": "2026-04-23",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 5,
+        "output": 30,
+        "blended": 11.25,
+        "cacheRead": 0.5,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 57,
+        "reasoning": 21,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 85,
+        "agents": 0
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "math",
+        "reasoning"
+      ],
+      "rankingCount": 5,
+      "llmStatsId": null,
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "pdf",
+        "text"
+      ],
+      "contextWindow": 1050000,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": null
+    },
+    {
       "id": "gpt-5-5-low",
       "name": "GPT-5.5 (low)",
       "provider": "OpenAI",
@@ -15521,6 +15406,58 @@
       "speed": "$undefined",
       "capabilities": {
         "coding": 70,
+        "reasoning": 70,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 85,
+        "agents": 80
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "agents",
+        "multimodal"
+      ],
+      "rankingCount": 5,
+      "llmStatsId": "gpt-5.5",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "pdf",
+        "text"
+      ],
+      "contextWindow": 1050000,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/gpt-5.5"
+    },
+    {
+      "id": "gpt-5-5",
+      "name": "GPT-5.5 (xhigh)",
+      "provider": "OpenAI",
+      "kind": "model",
+      "family": "GPT",
+      "openWeight": false,
+      "releaseDate": "2026-04-23",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 5,
+        "output": 30,
+        "blended": 11.25,
+        "cacheRead": 0.5,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 75,
         "reasoning": 70,
         "creativity": 0,
         "multilingual": 0,
@@ -16084,114 +16021,6 @@
       "llmStatsUrl": "https://llm-stats.com/models/gemini-3.1-flash-lite-preview"
     },
     {
-      "id": "gemini-3-7-flash",
-      "name": "Gemini 3.7 Flash (high)",
-      "provider": "Google",
-      "kind": "model",
-      "family": "Gemini",
-      "openWeight": false,
-      "releaseDate": "2026-08-13",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 0.75,
-        "output": 3.75,
-        "blended": 1.5,
-        "cacheRead": 0.075,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 76,
-        "reasoning": 100,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 80,
-        "agents": 100
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "agents",
-        "multimodal"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": "gemini-3.7-flash",
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "audio",
-        "image",
-        "pdf",
-        "text",
-        "video"
-      ],
-      "contextWindow": 1048576,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/gemini-3.7-flash"
-    },
-    {
-      "id": "gemini-3-7-flash-medium",
-      "name": "Gemini 3.7 Flash (medium)",
-      "provider": "Google",
-      "kind": "model",
-      "family": "Gemini",
-      "openWeight": false,
-      "releaseDate": "2026-08-13",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 0.75,
-        "output": 3.75,
-        "blended": 1.5,
-        "cacheRead": 0.075,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 72,
-        "reasoning": 32,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 80,
-        "agents": 0
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "math",
-        "reasoning"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": null,
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "audio",
-        "image",
-        "pdf",
-        "text",
-        "video"
-      ],
-      "contextWindow": 1048576,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": null
-    },
-    {
       "id": "gemma-4-26b-a4b",
       "name": "Gemma 4 26B A4B (Reasoning)",
       "provider": "Google",
@@ -16392,6 +16221,58 @@
       "llmStatsUrl": "https://llm-stats.com/models/gemma-4-e4b-it"
     },
     {
+      "id": "grok-4-6-xhigh",
+      "name": "Grok 4.6 (xhigh)",
+      "provider": "SpaceXAI",
+      "kind": "model",
+      "family": "Grok",
+      "openWeight": false,
+      "releaseDate": "2026-08-12",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 2,
+        "output": 6,
+        "blended": 3,
+        "cacheRead": 0.5,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 76,
+        "reasoning": 36,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 80,
+        "agents": 0
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "math",
+        "reasoning"
+      ],
+      "rankingCount": 5,
+      "llmStatsId": null,
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "pdf",
+        "text"
+      ],
+      "contextWindow": 500000,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": null
+    },
+    {
       "id": "inkling",
       "name": "Inkling (xhigh)",
       "provider": "Thinking Machines",
@@ -16507,7 +16388,7 @@
         "input": 0.95,
         "output": 4,
         "blended": 1.712,
-        "cacheRead": 0.0976,
+        "cacheRead": 0.16,
         "cacheWrite": null,
         "currency": "USD"
       },
@@ -16558,7 +16439,7 @@
         "input": 0.95,
         "output": 4,
         "blended": 1.712,
-        "cacheRead": 0.0976,
+        "cacheRead": 0.16,
         "cacheWrite": null,
         "currency": "USD"
       },
@@ -16596,110 +16477,6 @@
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
       "llmStatsUrl": "https://llm-stats.com/models/kimi-k2.6"
-    },
-    {
-      "id": "kimi-k3-low",
-      "name": "Kimi K3 (low)",
-      "provider": "Kimi",
-      "kind": "model",
-      "family": "Kimi",
-      "openWeight": false,
-      "releaseDate": "2026-07-16",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 3,
-        "output": 15,
-        "blended": 6,
-        "cacheRead": 0.3,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 72,
-        "reasoning": 29,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 0,
-        "agents": 0
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "math",
-        "reasoning"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": null,
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "text",
-        "video"
-      ],
-      "contextWindow": 1048576,
-      "paramCount": null,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": null
-    },
-    {
-      "id": "kimi-k3",
-      "name": "Kimi K3 (max)",
-      "provider": "Kimi",
-      "kind": "model",
-      "family": "Kimi",
-      "openWeight": true,
-      "releaseDate": "2026-07-16",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 3,
-        "output": 15,
-        "blended": 6,
-        "cacheRead": 0.3,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 76,
-        "reasoning": 80,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 80,
-        "agents": 92
-      },
-      "domains": [
-        "general",
-        "coding",
-        "science",
-        "agents",
-        "multimodal"
-      ],
-      "rankingCount": 5,
-      "llmStatsId": "kimi-k3",
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "image",
-        "text",
-        "video"
-      ],
-      "contextWindow": 1048576,
-      "paramCount": 2800000000000,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/kimi-k3"
     },
     {
       "id": "muse-spark",
@@ -17754,7 +17531,7 @@
         "input": 0.56,
         "output": 1.68,
         "blended": 0.84,
-        "cacheRead": 0.13,
+        "cacheRead": 0.55,
         "cacheWrite": null,
         "currency": "USD"
       },
@@ -17804,7 +17581,7 @@
         "input": 0.28,
         "output": 0.42,
         "blended": 0.315,
-        "cacheRead": 0.1345,
+        "cacheRead": 0.13,
         "cacheWrite": null,
         "currency": "USD"
       },
@@ -17892,39 +17669,39 @@
       "llmStatsUrl": "https://llm-stats.com/models/deepseek-v3.2-speciale"
     },
     {
-      "id": "deepseek-v4-flash",
-      "name": "DeepSeek V4 Flash 0731 (Reasoning, Max Effort)",
+      "id": "deepseek-v4-flash-vision-exp",
+      "name": "DeepSeek-V4-Flash-Vision-Exp",
       "provider": "DeepSeek",
       "kind": "model",
       "family": "DeepSeek",
       "openWeight": true,
-      "releaseDate": "2026-07-31",
+      "releaseDate": "2026-08-21",
       "evaluations": "$undefined",
       "pricing": {
-        "input": 0.44,
-        "output": 1.32,
-        "blended": 0.66,
+        "input": 2.2e-07,
+        "output": 6.6e-07,
+        "blended": 3.3e-07,
         "cacheRead": 0.0028,
         "cacheWrite": null,
         "currency": "USD"
       },
       "speed": "$undefined",
       "capabilities": {
-        "coding": 80,
-        "reasoning": 80,
+        "coding": 70,
+        "reasoning": 40,
         "creativity": 0,
         "multilingual": 0,
-        "multimodal": 0,
-        "agents": 60
+        "multimodal": 70,
+        "agents": 50
       },
       "domains": [
-        "general",
-        "coding",
-        "science",
-        "agents"
+        "agents",
+        "multimodal",
+        "math",
+        "reasoning"
       ],
       "rankingCount": 4,
-      "llmStatsId": "deepseek-v4-flash-max",
+      "llmStatsId": "deepseek-v4-flash-vision-exp",
       "llmStatsIds": "$undefined",
       "aliases": "$undefined",
       "license": "$undefined",
@@ -17932,13 +17709,14 @@
       "llmStatsBenchmarkScores": "$undefined",
       "description": "$undefined",
       "modalities": [
+        "image",
         "text"
       ],
       "contextWindow": 1000000,
-      "paramCount": 284000000000,
+      "paramCount": null,
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/deepseek-v4-flash-max"
+      "llmStatsUrl": "https://llm-stats.com/models/deepseek-v4-flash-vision-exp"
     },
     {
       "id": "glm-4.5",
@@ -18546,6 +18324,165 @@
       "llmStatsUrl": "https://llm-stats.com/models/gemini-1.5-pro"
     },
     {
+      "id": "gemini-2-5-flash",
+      "name": "Gemini 2.5 Flash (Non-reasoning)",
+      "provider": "Google",
+      "kind": "model",
+      "family": "Gemini",
+      "openWeight": false,
+      "releaseDate": "2025-05-20",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 0.3,
+        "output": 2.5,
+        "blended": 0.85,
+        "cacheRead": 0.03,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 0,
+        "reasoning": 33,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 82,
+        "agents": 0
+      },
+      "domains": [
+        "general",
+        "coding",
+        "math",
+        "science",
+        "audio"
+      ],
+      "rankingCount": 4,
+      "llmStatsId": null,
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "audio",
+        "image",
+        "pdf",
+        "text",
+        "video"
+      ],
+      "contextWindow": 1048576,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": null
+    },
+    {
+      "id": "gemini-2-5-flash-lite",
+      "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
+      "provider": "Google",
+      "kind": "model",
+      "family": "Gemini",
+      "openWeight": true,
+      "releaseDate": "2025-06-17",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 0.1,
+        "output": 0.4,
+        "blended": 0.175,
+        "cacheRead": 0.01,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 30,
+        "reasoning": 50,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 85,
+        "agents": 0
+      },
+      "domains": [
+        "general",
+        "coding",
+        "math",
+        "science",
+        "audio"
+      ],
+      "rankingCount": 4,
+      "llmStatsId": "gemini-2.5-flash-lite",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "audio",
+        "image",
+        "pdf",
+        "text",
+        "video"
+      ],
+      "contextWindow": 1048576,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/gemini-2.5-flash-lite"
+    },
+    {
+      "id": "gemma-3-12b",
+      "name": "Gemma 3 12B Instruct",
+      "provider": "Google",
+      "kind": "model",
+      "family": "Gemma",
+      "openWeight": true,
+      "releaseDate": "2025-03-12",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 0,
+        "output": 0,
+        "blended": 0,
+        "cacheRead": null,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 60,
+        "reasoning": 70,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 80,
+        "agents": 0
+      },
+      "domains": [
+        "general",
+        "coding",
+        "math",
+        "science",
+        "multimodal"
+      ],
+      "rankingCount": 4,
+      "llmStatsId": "gemma-3-12b-it",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "text"
+      ],
+      "contextWindow": 131072,
+      "paramCount": 12000000000,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/gemma-3-12b-it"
+    },
+    {
       "id": "claude-mythos-preview",
       "name": "Claude Mythos Preview",
       "provider": "Anthropic",
@@ -19079,7 +19016,7 @@
         "input": 0.15,
         "output": 0.6,
         "blended": 0.262,
-        "cacheRead": 0.03,
+        "cacheRead": null,
         "cacheWrite": null,
         "currency": "USD"
       },
@@ -19165,6 +19102,57 @@
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
       "llmStatsUrl": "https://llm-stats.com/models/grok-4.20-beta-0309-reasoning"
+    },
+    {
+      "id": "grok-4-6",
+      "name": "Grok 4.6 (high)",
+      "provider": "SpaceXAI",
+      "kind": "model",
+      "family": "Grok",
+      "openWeight": false,
+      "releaseDate": "2026-08-12",
+      "evaluations": "$undefined",
+      "pricing": {
+        "input": 2,
+        "output": 6,
+        "blended": 3,
+        "cacheRead": 0.5,
+        "cacheWrite": null,
+        "currency": "USD"
+      },
+      "speed": "$undefined",
+      "capabilities": {
+        "coding": 77,
+        "reasoning": 100,
+        "creativity": 0,
+        "multilingual": 0,
+        "multimodal": 80,
+        "agents": 100
+      },
+      "domains": [
+        "general",
+        "coding",
+        "science",
+        "agents"
+      ],
+      "rankingCount": 4,
+      "llmStatsId": "grok-4.6",
+      "llmStatsIds": "$undefined",
+      "aliases": "$undefined",
+      "license": "$undefined",
+      "llmStatsScores": "$undefined",
+      "llmStatsBenchmarkScores": "$undefined",
+      "description": "$undefined",
+      "modalities": [
+        "image",
+        "pdf",
+        "text"
+      ],
+      "contextWindow": 500000,
+      "paramCount": null,
+      "llmStatsProviders": "$undefined",
+      "sources": "$undefined",
+      "llmStatsUrl": "https://llm-stats.com/models/grok-4.6"
     },
     {
       "id": "grok-4-fast",
@@ -19415,52 +19403,6 @@
       "llmStatsProviders": "$undefined",
       "sources": "$undefined",
       "llmStatsUrl": "https://llm-stats.com/models/kimi-k2-thinking-0905"
-    },
-    {
-      "id": "lfm-2.5-2.6b",
-      "name": "LFM2.5-2.6B",
-      "provider": "Liquid AI",
-      "kind": "model",
-      "family": "",
-      "openWeight": true,
-      "releaseDate": "2026-08-04",
-      "evaluations": "$undefined",
-      "pricing": {
-        "input": 0,
-        "output": 0,
-        "blended": 0,
-        "cacheRead": null,
-        "cacheWrite": null,
-        "currency": "USD"
-      },
-      "speed": "$undefined",
-      "capabilities": {
-        "coding": 70,
-        "reasoning": 50,
-        "creativity": 0,
-        "multilingual": 0,
-        "multimodal": 0,
-        "agents": 50
-      },
-      "domains": [
-        "agents"
-      ],
-      "rankingCount": 1,
-      "llmStatsId": "lfm-2.5-2.6b",
-      "llmStatsIds": "$undefined",
-      "aliases": "$undefined",
-      "license": "$undefined",
-      "llmStatsScores": "$undefined",
-      "llmStatsBenchmarkScores": "$undefined",
-      "description": "$undefined",
-      "modalities": [
-        "text"
-      ],
-      "contextWindow": 65536,
-      "paramCount": 2690000000,
-      "llmStatsProviders": "$undefined",
-      "sources": "$undefined",
-      "llmStatsUrl": "https://llm-stats.com/models/lfm-2.5-2.6b"
     },
     {
       "id": "lfm-2.5-vl-3b",
@@ -20342,9 +20284,9 @@
       "releaseDate": "2026-08-10",
       "evaluations": "$undefined",
       "pricing": {
-        "input": 0.3,
-        "output": 1.1,
-        "blended": 0.5,
+        "input": 0.35,
+        "output": 1.5,
+        "blended": 0.6375,
         "cacheRead": 0.04,
         "cacheWrite": null,
         "currency": "USD"
